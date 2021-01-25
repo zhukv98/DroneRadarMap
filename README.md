@@ -32,3 +32,5 @@ Use your Android Device to search any parks and attractions near your position w
 ## Product Backlog
 
 ## Scrum Roles
+
+## Weekly Meetings
