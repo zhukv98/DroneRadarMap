@@ -30,7 +30,7 @@ As a user interested in launching drones, I want to search any parks and attract
 #### Dependencies
 Parks and Attractions search data are available and accessible.
 
-The device has GPS capabilities, and the user has ranted location access.
+The device has GPS capabilities, and the user has granted location access.
 
 All restriction areas and levels are present on the map.
 #### Assumptions
