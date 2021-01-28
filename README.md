@@ -43,7 +43,21 @@ The weather is clear in the user's location.
 #### Examples
 1.1
 
-#### Given  
+#### Given GPS details are available 
+#### When I search "Ault Park"
+#### Then I should receive
+
+Name: Ault Park
+Drone Restriction Level(s): 3-4
+
+1.2
+
+#### Given GPS details are available 
+#### When I search "Summit Park"
+#### Then I should receive
+
+Name: Summit Park
+Drone Restriction Level(s): 1
 ## Class Diagram
 
 ## Class Diagram Description
