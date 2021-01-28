@@ -24,7 +24,13 @@ Use your Android Device to search any parks and attractions near your position w
 ## Storyboard
 
 ## Function Requirements
+#### Scenario
+As a user interested in launching drones, I want to search any parks and attractions that are the best places to launch without any difficulties.
 
+#### Dependencies
+Parks and Attractions search data are available and accessible.
+The device has GPS capabilities, and the user has ranted location access.
+All restriction areas and levels are present on the map.
 ## Class Diagram
 
 ## Class Diagram Description
@@ -32,5 +38,8 @@ Use your Android Device to search any parks and attractions near your position w
 ## Product Backlog
 
 ## Scrum Roles
+- DevOps/Product Owner/Scrum Master: Kevin Zhu
+- Frontend Developer: Storm Hamilton, Edward Greenlee
+- Integration: Lily Powell, Jeanette Kootin-Sanwu
 
 ## Weekly Meetings
