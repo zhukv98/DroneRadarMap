@@ -36,11 +36,14 @@ All restriction areas and levels are present on the map.
 #### Assumptions
 The terrain in Google Maps is flat.
 
-Security sensitive locations are highlighted in different colors to show the restriction levels 
+Security sensitive locations are highlighted in different colors to show the restriction levels.
+
+THe weather is clear in the user's location.
 ## Class Diagram
 
 ## Class Diagram Description
-
+#### MainActivity: 
+The first screens the user sees. It will be a map with weather radar to show the current positions of rain, ice/snow, and winds. 
 ## Product Backlog
 
 ## Scrum Roles
