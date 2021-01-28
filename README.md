@@ -38,12 +38,16 @@ The terrain in Google Maps is flat.
 
 Security sensitive locations are highlighted in different colors to show the restriction levels.
 
-THe weather is clear in the user's location.
+The weather is clear in the user's location.
+
+#### Examples
+1.1
+
+#### Given  
 ## Class Diagram
 
 ## Class Diagram Description
-#### MainActivity: 
-The first screens the user sees. It will be a map with weather radar to show the current positions of rain, ice/snow, and winds. 
+#### MainActivity: The first screens the user sees. It will be a map with weather radar to show the current positions of rain, ice/snow, and winds. 
 ## Product Backlog
 
 ## Scrum Roles
