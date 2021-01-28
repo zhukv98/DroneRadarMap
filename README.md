@@ -47,7 +47,7 @@ The weather is clear in the user's location.
 ## Class Diagram
 
 ## Class Diagram Description
-#### MainActivity: The first screens the user sees. It will be a map with weather radar to show the current positions of rain, ice/snow, and winds. 
+#### MainActivity: The first screens the user sees. It will be a map with weather radar to show the current positions of rain, ice/snow, or winds depending on the setting. 
 ## Product Backlog
 
 ## Scrum Roles
