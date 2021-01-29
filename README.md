@@ -14,7 +14,7 @@ Lily Powell
 
 Jeanette Kootin-Sanwu
 
-## Introduction
+## Introduction - Kevin
 Searching for the best place to play with your drones without any trouble? Drone Radar Map can help you:
 - Finding parks and attractions and record them in your search
 - Locate restrictions zones
@@ -22,8 +22,8 @@ Searching for the best place to play with your drones without any trouble? Drone
 
 Use your Android Device to search any parks and attractions near your position where you can play with drones. Summit Park is one of the best places to play with them because of its massive field. Receive warnings on being under a restriction zone and show the its level. Noftify you when rain, ice/snow, or high winds are moving to your current position.
 ## Storyboard
-
-## Function Requirements
+ - Lily
+## Function Requirements - Kevin
 #### Scenario
 As a user interested in launching drones, I want to search any parks and attractions that are the best places to launch without any difficulties.
 
@@ -65,14 +65,16 @@ Drone Restriction Level(s): 1
 
 Current Weather: Overcast
 ## Class Diagram
-
+ - Storm
 ## Class Diagram Description
+ - Jeanette, help from Storm if needed
 #### MainActivity: The first screens the user sees. It will be a map with weather radar to show the current positions of rain, ice/snow, or winds depending on the setting. 
 ## Product Backlog
-
+ - Edward
 ## Scrum Roles
 - DevOps/Product Owner/Scrum Master: Kevin Zhu
 - Frontend Developer: Lily Powell, Edward Greenlee
 - Integration: Jeanette Kootin-Sanwu, Storm Hamilton
 
 ## Weekly Meetings
+Thursdays @ 5:30 through Teams.
