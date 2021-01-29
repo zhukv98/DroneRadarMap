@@ -72,7 +72,7 @@ Current Weather: Overcast
 
 ## Scrum Roles
 - DevOps/Product Owner/Scrum Master: Kevin Zhu
-- Frontend Developer: Storm Hamilton, Edward Greenlee
-- Integration: Lily Powell, Jeanette Kootin-Sanwu
+- Frontend Developer: Lily Powell, Edward Greenlee
+- Integration: Jeanette Kootin-Sanwu, Storm Hamilton
 
 ## Weekly Meetings
