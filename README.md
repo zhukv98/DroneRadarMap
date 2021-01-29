@@ -30,7 +30,7 @@ As a user interested in launching drones, I want to search any parks and attract
 #### Dependencies
 Parks and Attractions search data are available and accessible.
 
-The device has GPS capabilities, and the user has granted location access.
+The device has GPS capabilities and the user has granted location access.
 
 All restriction areas and levels are present on the map.
 #### Assumptions
@@ -49,6 +49,8 @@ The weather is clear in the user's location.
 
 Name: Ault Park
 
+Category: Park
+
 Drone Restriction Level(s): 3-4
 
 Current Weather: Overcast
@@ -60,6 +62,8 @@ Current Weather: Overcast
 #### Then I should receive
 
 Name: Summit Park
+
+Category: Park
 
 Drone Restriction Level(s): 1
 
