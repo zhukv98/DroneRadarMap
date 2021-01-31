@@ -14,7 +14,7 @@ Lily Powell
 
 Jeanette Kootin-Sanwu
 
-## Introduction - Kevin
+## Introduction
 Searching for the best place to play with your drones without any trouble? Drone Radar Map can help you:
 - Finding parks and attractions and record them in your search
 - Locate restrictions zones
@@ -24,7 +24,7 @@ Use your Android Device to search any parks and attractions near your position w
 ## Storyboard
 ![IMG_6443](https://user-images.githubusercontent.com/51676111/106401765-db288280-63f3-11eb-9fcb-259fb0da6e1e.jpeg)
 ![IMG_6444](https://user-images.githubusercontent.com/51676111/106401773-e24f9080-63f3-11eb-9cae-33b5df8f1bac.jpeg)
-## Function Requirements - Kevin
+## Function Requirements
 #### Scenario
 As a user interested in launching drones, I want to search any nearby parks and attractions that are the best places to launch them without any difficulties so that it won't pose a threat to aircraft that are in the air. When I select a park or attraction, I want to see its zone restriction levels and the current weather there.
 
