@@ -78,7 +78,7 @@ Current Weather: Overcast
 - SpecificPark: Noun class that represents a specific park
 - IParkDAO: Interface to gather the details of the park information
 - ISpecificDAO: Interface to gather weather and geolocation data of the specific park 
-- OutsideWeatherFeed: Output database of the weather that is outputted
+- OutsideWeatherFeed: Output database of the weather 
 - ParkDatabase: Database of the different parks
 - OutsideParkDatabase: Database of the different outside parks
 
