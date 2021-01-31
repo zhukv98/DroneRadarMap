@@ -20,7 +20,7 @@ Searching for the best place to play with your drones without any trouble? Drone
 - Locate restrictions zones
 - Monitor the weather at your current position
 
-Use your Android Device to search any parks and attractions near your position where you can play with drones. Summit Park is one of the best places to play with them because of its massive field. Receive warnings on being under a restriction zone and show the its level. Noftify you when rain, ice/snow, or high winds are moving to your current position.
+Use your Android Device to search any parks and attractions near your position where you can play with drones. For example, Summit Park is one of the best places to play with them because of its massive open area. Receive warnings on being under a restriction zone and show the its level. Noftify you when rain, ice/snow, or high winds are moving to your current position.
 ## Storyboard
  - Lily
 ## Function Requirements - Kevin
@@ -34,9 +34,9 @@ The device has GPS capabilities and the user has granted location access.
 
 All restriction areas and levels are present on the map.
 #### Assumptions
-The terrain in Google Maps is flat.
+The terrain on the map is flat.
 
-Security sensitive locations are highlighted in different colors to show the restriction levels.
+Security sensitive locations are highlighted in different colors to show their restriction levels.
 
 The weather is clear in the user's location.
 
@@ -78,7 +78,7 @@ Current Weather: Overcast
 - SpecificPark: Noun class that represents a specific park
 - IParkDAO: Interface to gather the details of the park information
 - ISpecificDAO: Interface to gather weather and geolocation data of the specific park 
-- OutsideWeatherFeed: Output database of the weather 
+- OutsideWeatherFeed: Output database of the weather that is outputted
 - ParkDatabase: Database of the different parks
 - OutsideParkDatabase: Database of the different outside parks
 
