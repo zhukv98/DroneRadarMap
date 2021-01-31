@@ -79,7 +79,7 @@ Current Weather: Overcast
 - IParkDAO: Interface to gather the details of the park information
 - ISpecificDAO: Interface to gather weather and geolocation data of the specific park 
 - OutsideWeatherFeed:
-- Park Database:
+- ParkDatabase:
 - OutsideParkDatabase:
 
 #### MainActivity: The first screens the user sees. It will be a map with weather radar to show the current positions of rain, ice/snow, or winds depending on the setting. 
