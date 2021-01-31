@@ -82,7 +82,6 @@ Current Weather: Overcast
 - ParkDatabase:
 - OutsideParkDatabase:
 
-#### MainActivity: The first screens the user sees. It will be a map with weather radar to show the current positions of rain, ice/snow, or winds depending on the setting. 
 ## Product Backlog
  - Edward
 ## Scrum Roles
