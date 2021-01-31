@@ -80,7 +80,6 @@ Current Weather: Overcast
 - ISpecificDAO: Interface to gather weather and geolocation data of the specific park 
 - OutsideWeatherFeed: Output database of the weather that is outputted
 - ParkDatabase: Database of the different parks
-- OutsideParkDatabase: Database of the different outside parks
 
 ## Product Backlog
  - Edward
