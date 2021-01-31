@@ -25,7 +25,7 @@ Use your Android Device to search any parks and attractions near your position w
  - Lily
 ## Function Requirements - Kevin
 #### Scenario
-As a user interested in launching drones, I want to search any parks and attractions that are the best places to launch without any difficulties.
+As a user interested in launching drones, I want to search any nearby parks and attractions that are the best places to launch them without any difficulties so that it won't pose a threat to aircraft that are in the air. When I select a park or attraction, I want to see its zone restriction levels and the current weather there.
 
 #### Dependencies
 Parks and Attractions search data are available and accessible.
