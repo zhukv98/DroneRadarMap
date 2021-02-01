@@ -82,7 +82,7 @@ Current Weather: Overcast
 - OutsideWeatherFeed: Output database of the weather that is outputted
 - ParkDatabase: Database of the different parks
 
-## Product Backlog (Loacted in Projects on GitHub)
+## Product Backlog (Located in Projects on GitHub)
  - Current Location and Weather
  - Location Lookup
 ## Scrum Roles
