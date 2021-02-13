@@ -88,7 +88,7 @@ class TransparentTileOWM(private val tileType: String):TileProvider {
     }
 
     companion object {
-        private const val OWM_TILE_URL = "http://tile.openweathermap.org/map/%s/%d/%d/%d.png"
+        private const val OWM_TILE_URL = "http://tile.openweathermap.org/map/%s/%d/%d/%d.png?appid=d6d46d84c231bd013c9f0088629b0eb8"
     }
 
     /**
