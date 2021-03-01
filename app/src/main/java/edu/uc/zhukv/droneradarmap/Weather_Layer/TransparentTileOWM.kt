@@ -14,11 +14,14 @@ import java.net.URL
 class TransparentTileOWM(private val tileType: String):TileProvider {
     private val opacityPaint = Paint()
 
+    init {
+        setOpacity(50)
+    }
     /**
      * Sets the desired opacity of map [Tile]s, as a percentage where 0% is invisible and 100% is completely opaque.
      * @param opacity The desired opacity of map [Tile]s (as a percentage between 0 and 100, inclusive)
      */
-    fun setOpacity(opacity: Int) {
+    internal fun setOpacity(opacity: Int) {
         val alpha = Math.round(opacity * 2.55).toInt() // 2.55 = 255 * 0.01
         opacityPaint.alpha = alpha
     }
@@ -98,7 +101,5 @@ class TransparentTileOWM(private val tileType: String):TileProvider {
      * for an OpenWeatherMap URL would be: http://tile.openweathermap.org/map/precipitation/{zoom}/{x}/{y}.png
      *
      */
-    init {
-        setOpacity(50)
-    }
+
 }
