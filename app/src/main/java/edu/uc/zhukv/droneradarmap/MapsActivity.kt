@@ -20,7 +20,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
 
-    private val OWM_TILE_URL = "http://tile.openweathermap.org/map/%s/%d/%d/%d.png?appid=d6d46d84c231bd013c9f0088629b0eb8"
+    //Renamed this without underscore as per naming conventions insisted by Kotlin Formatting
+    private val tileURL =
+        "http://tile.openweathermap.org/map/%s/%d/%d/%d.png?appid=d6d46d84c231bd013c9f0088629b0eb8"
     private var spinner: Spinner? = null
     private var tileType = "clouds"
     private var tileOver: TileOverlay? = null
@@ -34,12 +36,27 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 //        mapFragment.getMapAsync(this)
 
         spinner = findViewById(R.id.tileType)
-        val tileName = arrayOf("Clouds", "Temperature", "Precipitations", "Snow", "Rain", "Wind", "Sea level press.")
-        val adpt: ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, tileName)
-        spinner?.adapter = adpt
+        val tileName = arrayOf(
+            "Clouds",
+            "Temperature",
+            "Precipitations",
+            "Snow",
+            "Rain",
+            "Wind",
+            "Sea level press."
+        )
+        //Gave Array a more meaningful name
+        val tileTypes: ArrayAdapter<String> =
+            ArrayAdapter(this, android.R.layout.simple_spinner_item, tileName)
+        spinner?.adapter = tileTypes
         spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
-            override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
                 // Check click
                 when (position) {
                     0 -> tileType = "clouds"
@@ -54,9 +71,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 setUpMap()
             }
         }
-        val mapFragment = supportFragmentManager
-                .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+        //Changed to .also for less redundancy see: https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/also.html
+        val mapFragment = (supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment).also {
+            it.getMapAsync(this)
+        }
     }
 
     /**
@@ -79,7 +98,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun createTileProvider(): TileProvider {
         return object : UrlTileProvider(256, 256) {
             override fun getTileUrl(x: Int, y: Int, zoom: Int): URL {
-                val fUrl = String.format(OWM_TILE_URL, tileType, zoom, x, y)
+                val fUrl = String.format(tileURL, tileType, zoom, x, y)
                 var url: URL? = null
                 try {
                     url = URL(fUrl)
@@ -90,6 +109,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.

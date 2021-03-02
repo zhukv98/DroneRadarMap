@@ -10,16 +10,19 @@ import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.net.MalformedURLException
 import java.net.URL
+import kotlin.math.roundToInt
 
-class TransparentTileOWM(private val tileType: String):TileProvider {
+class TransparentTileOWM(private val tileType: String) : TileProvider {
     private val opacityPaint = Paint()
 
     /**
      * Sets the desired opacity of map [Tile]s, as a percentage where 0% is invisible and 100% is completely opaque.
      * @param opacity The desired opacity of map [Tile]s (as a percentage between 0 and 100, inclusive)
      */
-    fun setOpacity(opacity: Int) {
-        val alpha = Math.round(opacity * 2.55).toInt() // 2.55 = 255 * 0.01
+    //Only used here so set to private.
+    private fun setOpacity(opacity: Int) {
+        //Changed to kotlin function .roundToInt instead of .round and .toInt see: https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.math/round-to-int.html
+        val alpha = (opacity * 2.55).roundToInt() // 2.55 = 255 * 0.01
         opacityPaint.alpha = alpha
     }
 
@@ -88,7 +91,8 @@ class TransparentTileOWM(private val tileType: String):TileProvider {
     }
 
     companion object {
-        private const val OWM_TILE_URL = "http://tile.openweathermap.org/map/%s/%d/%d/%d.png?appid=d6d46d84c231bd013c9f0088629b0eb8"
+        private const val OWM_TILE_URL =
+            "http://tile.openweathermap.org/map/%s/%d/%d/%d.png?appid=d6d46d84c231bd013c9f0088629b0eb8"
     }
 
     /**
