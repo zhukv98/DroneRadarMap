@@ -27,7 +27,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private var mLocationPermissionGranted = false
     private val LOCATION_PERMISSION_REQUEST_CODE = 1234
     private lateinit var mFusedLocationProviderClient: FusedLocationProviderClient
-    private val DEFAULT_ZOOM = 15f
+    private val DEFAULT_ZOOM = 15F
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
