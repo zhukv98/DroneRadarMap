@@ -91,4 +91,4 @@ Current Weather: Overcast
 - Integration: Jeanette Kootin-Sanwu, Storm Hamilton
 
 ## Weekly Meetings
-Thursdays @ 5:30 through Teams.
+Thursdays @ 7:00 PM and Sundays @ 6:00 PM through Teams.
