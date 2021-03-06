@@ -134,9 +134,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 if (grantResults.isNotEmpty()) {
                     for(permission in grantResults){
                         if(permission != PackageManager.PERMISSION_GRANTED){
+                            mLocationPermissionGranted = false
                             return
                         }
                     }
+                    mLocationPermissionGranted = true
+                    val mapFragment = supportFragmentManager
+                            .findFragmentById(R.id.map) as SupportMapFragment
+                    mapFragment.getMapAsync(this)
                 }
             }
         }
@@ -171,9 +176,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 return
             }
             mMap.isMyLocationEnabled = true
-            val mapFragment = supportFragmentManager
-                    .findFragmentById(R.id.map) as SupportMapFragment
-            mapFragment.getMapAsync(this)
             init()
         }
     }
