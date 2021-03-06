@@ -39,7 +39,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
-
+        mSearchText = findViewById(R.id.input_search)
         getLocationPermission()
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 //        val mapFragment = supportFragmentManager
@@ -116,6 +116,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     ) == PackageManager.PERMISSION_GRANTED
             ) {
                 mLocationPermissionGranted = true
+                val mapFragment = supportFragmentManager
+                        .findFragmentById(R.id.map) as SupportMapFragment
+                mapFragment.getMapAsync(this)
             } else {
                 ActivityCompat.requestPermissions(
                         this,
