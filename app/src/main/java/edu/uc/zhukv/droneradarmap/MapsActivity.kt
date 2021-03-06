@@ -41,7 +41,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     geoLocate()
                     true
                 }
-                false
+               false
             }
         }
     }
