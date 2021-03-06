@@ -64,7 +64,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val list: List<Address>
         list = geocoder.getFromLocationName(searchString, 1)
         if(list.isNotEmpty()){
-            val address = list[0];
+            val address = list[0]
             Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show()
         }
     }
@@ -170,7 +170,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             ) {
                 return
             }
-            mMap.isMyLocationEnabled = true;
+            mMap.isMyLocationEnabled = true
+            init()
         }
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
