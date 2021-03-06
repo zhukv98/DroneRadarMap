@@ -32,18 +32,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
     }
     private fun init(){
-        mSearchText.setOnEditorActionListener{ textView: TextView, actionId: Int, keyEvent: KeyEvent ->
-            override fun onEditorAction(textView: TextView, actionId: Int, keyEvent: KeyEvent) {
+        mSearchText.setOnEditorActionListener{ textView, actionId, keyEvent ->
                 if(actionId == EditorInfo.IME_ACTION_SEARCH
                         || actionId == EditorInfo.IME_ACTION_DONE
                         || keyEvent.getAction()==KeyEvent.ACTION_DOWN
                         || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER){
                     geoLocate()
-                    true
                 }
                false
             }
-        }
+
     }
     private fun geoLocate(){
         val searchString = mSearchText.text.toString()
