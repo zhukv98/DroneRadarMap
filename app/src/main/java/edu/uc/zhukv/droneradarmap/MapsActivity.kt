@@ -17,6 +17,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.tasks.Task
 
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -36,9 +37,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         getLocationPermission()
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//        val mapFragment = supportFragmentManager
-//                .findFragmentById(R.id.map) as SupportMapFragment
-//        mapFragment.getMapAsync(this)
+        val mapFragment = supportFragmentManager
+                .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
     }
 
     private fun getDeviceLocation() {
@@ -57,11 +58,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             val location = mFusedLocationProviderClient.lastLocation
             location.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    var currentLocation = task.result
-                    moveCamera(
-                            LatLng(currentLocation.latitude, currentLocation.longitude),
-                            DEFAULT_ZOOM
-                    )
+                    var currentLocation:Location? = task.result
+                    if (currentLocation != null) {
+                        moveCamera(
+                                LatLng(currentLocation.latitude, currentLocation.longitude),
+                                DEFAULT_ZOOM
+                        )
+                    }
                 }
             }
         }
@@ -108,9 +111,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 if (grantResults.isNotEmpty()) {
                     for(permission in grantResults){
                         if(permission != PackageManager.PERMISSION_GRANTED){
+                            mLocationPermissionGranted = false
                             return
                         }
                     }
+                    mLocationPermissionGranted = true
+                    val mapFragment = supportFragmentManager
+                            .findFragmentById(R.id.map) as SupportMapFragment
+                    mapFragment.getMapAsync(this)
                 }
             }
         }
