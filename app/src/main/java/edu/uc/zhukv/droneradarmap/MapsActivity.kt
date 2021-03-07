@@ -57,7 +57,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             val location = mFusedLocationProviderClient.lastLocation
             location.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    var currentLocation = Location(task.result)
+                    var currentLocation = task.result
                     moveCamera(
                             LatLng(currentLocation.latitude, currentLocation.longitude),
                             DEFAULT_ZOOM
