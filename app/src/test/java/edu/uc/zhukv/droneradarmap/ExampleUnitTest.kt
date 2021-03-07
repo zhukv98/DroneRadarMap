@@ -1,5 +1,6 @@
 package edu.uc.zhukv.droneradarmap
 
+import edu.uc.zhukv.droneradarmap.Weather_Layer.TransparentTileOWM
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -13,5 +14,10 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+    }
+
+    @Test
+    fun confirmTransparentTileOWM(){
+        var TransparentTileOWM = TransparentTileOWM("clouds");
     }
 }

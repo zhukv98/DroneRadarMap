@@ -20,7 +20,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
 
-    private val OWM_TILE_URL = "http://tile.openweathermap.org/map/%s/%d/%d/%d.png?appid=d6d46d84c231bd013c9f0088629b0eb8"
+    private val OPEN_WEATHER_MAP_TILE_URL = "http://tile.openweathermap.org/map/%s/%d/%d/%d.png?appid=d6d46d84c231bd013c9f0088629b0eb8"
     private var spinner: Spinner? = null
     private var tileType = "clouds"
     private var tileOver: TileOverlay? = null
@@ -79,7 +79,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun createTileProvider(): TileProvider {
         return object : UrlTileProvider(256, 256) {
             override fun getTileUrl(x: Int, y: Int, zoom: Int): URL {
-                val fUrl = String.format(OWM_TILE_URL, tileType, zoom, x, y)
+                val fUrl = String.format(OPEN_WEATHER_MAP_TILE_URL, tileType, zoom, x, y)
                 var url: URL? = null
                 try {
                     url = URL(fUrl)
