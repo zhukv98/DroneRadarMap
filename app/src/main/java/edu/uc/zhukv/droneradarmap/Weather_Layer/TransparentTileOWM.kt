@@ -15,6 +15,16 @@ class TransparentTileOWM(private val tileType: String):TileProvider {
     private val opacityPaint = Paint()
 
     /**
+     * This constructor assumes the `url` parameter contains three placeholders for the x- and y-positions of
+     * the tile as well as the zoom level of the tile. The placeholders are assumed to be `{x}`,
+     * `{y}`, and `{zoom}`. An example
+     * for an OpenWeatherMap URL would be: http://tile.openweathermap.org/map/precipitation/{zoom}/{x}/{y}.png
+     *
+     */
+    init {
+        setOpacity(50)
+    }
+    /**
      * Sets the desired opacity of map [Tile]s, as a percentage where 0% is invisible and 100% is completely opaque.
      * @param opacity The desired opacity of map [Tile]s (as a percentage between 0 and 100, inclusive)
      */
@@ -78,7 +88,7 @@ class TransparentTileOWM(private val tileType: String):TileProvider {
      * @param bitmap The [Bitmap] whose opacity to adjust
      * @return A new [Bitmap] with an adjusted opacity
      *
-     * @see htp://stackoverflow.com/questions/14322236/making-tileoverlays-transparent.comment19934097_14329560
+     * @see http://stackoverflow.com/questions/14322236/making-tileoverlays-transparent.comment19934097_14329560
      */
     private fun adjustOpacity(bitmap: Bitmap): Bitmap {
         val adjustedBitmap = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_8888)
@@ -91,14 +101,4 @@ class TransparentTileOWM(private val tileType: String):TileProvider {
         private const val OWM_TILE_URL = "http://tile.openweathermap.org/map/%s/%d/%d/%d.png?appid=d6d46d84c231bd013c9f0088629b0eb8"
     }
 
-    /**
-     * This constructor assumes the `url` parameter contains three placeholders for the x- and y-positions of
-     * the tile as well as the zoom level of the tile. The placeholders are assumed to be `{x}`,
-     * `{y}`, and `{zoom}`. An example
-     * for an OpenWeatherMap URL would be: http://tile.openweathermap.org/map/precipitation/{zoom}/{x}/{y}.png
-     *
-     */
-    init {
-        setOpacity(50)
-    }
 }
