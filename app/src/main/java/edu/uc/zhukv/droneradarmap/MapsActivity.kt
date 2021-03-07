@@ -36,9 +36,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         getLocationPermission()
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager
-                .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+//        val mapFragment = supportFragmentManager
+//                .findFragmentById(R.id.map) as SupportMapFragment
+//        mapFragment.getMapAsync(this)
     }
 
     private fun getDeviceLocation() {
@@ -87,6 +87,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     ) == PackageManager.PERMISSION_GRANTED
             ) {
                 mLocationPermissionGranted = true
+                val mapFragment = supportFragmentManager
+                        .findFragmentById(R.id.map) as SupportMapFragment
+                mapFragment.getMapAsync(this)
             } else {
                 ActivityCompat.requestPermissions(
                         this,
