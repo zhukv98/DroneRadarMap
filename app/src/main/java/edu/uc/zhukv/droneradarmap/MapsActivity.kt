@@ -16,8 +16,11 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.tasks.Task
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
+import edu.uc.zhukv.droneradarmap.ui.main.MainViewModel
 
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -30,6 +33,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private val LOCATION_PERMISSION_REQUEST_CODE = 1234
     private lateinit var mFusedLocationProviderClient: FusedLocationProviderClient
     private val DEFAULT_ZOOM = 15F
+    private lateinit var marker: Marker
+    lateinit var mvm: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -153,6 +158,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 return
             }
             mMap.isMyLocationEnabled = true;
+            AirportMarkers()
         }
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -181,5 +187,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+   fun AirportMarkers(){
+       mvm = MainViewModel()
+       mvm.airports.observeForever{
+           var pos: MutableList<LatLng> = ArrayList()
+           it.forEach{
+               pos.add(LatLng(it.latitude.toDouble(), it.longitude.toDouble()))
+           }
+           //Create MarkerOptions object
+           val markerOptions = MarkerOptions()
+           for(airport in pos) {
+               markerOptions.position(airport)
+               markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.aircraft))
+               marker = mMap.addMarker(markerOptions)
+           }
+       }
     }
 }
