@@ -2,6 +2,7 @@ package edu.uc.zhukv.droneradarmap
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.Location
 import android.os.Bundle
 import android.view.Menu
@@ -16,12 +17,8 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import edu.uc.zhukv.droneradarmap.ui.main.MainViewModel
-
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -34,7 +31,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mFusedLocationProviderClient: FusedLocationProviderClient
     private val DEFAULT_ZOOM = 15F
     private lateinit var marker: Marker
-    lateinit var mvm: MainViewModel
+    var mvm: MainViewModel = MainViewModel()
+    private var GEOFENCE_RADIUS = 200F
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -141,10 +139,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        // Add a marker in Sydney and move the camera
-//        val sydney = LatLng(-34.0, 151.0)
-//        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
         if (mLocationPermissionGranted) {
             getDeviceLocation()
             if (ActivityCompat.checkSelfPermission(
@@ -188,20 +182,31 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             else -> super.onOptionsItemSelected(item)
         }
     }
-   fun AirportMarkers(){
-       mvm = MainViewModel()
+   private fun AirportMarkers(){
+
+       mvm.fetchAirports()
+       var pos = ArrayList<LatLng>()
        mvm.airports.observeForever{
-           var pos: MutableList<LatLng> = ArrayList()
            it.forEach{
                pos.add(LatLng(it.latitude.toDouble(), it.longitude.toDouble()))
            }
-           //Create MarkerOptions object
-           val markerOptions = MarkerOptions()
-           for(airport in pos) {
-               markerOptions.position(airport)
-               markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.aircraft))
-               marker = mMap.addMarker(markerOptions)
-           }
        }
+       //Create MarkerOptions object
+       val markerOptions = MarkerOptions()
+       for(airport in pos) {
+           markerOptions.position(airport)
+           markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.aircraft))
+           marker = mMap.addMarker(markerOptions)
+           addCircle(airport, GEOFENCE_RADIUS)
+       }
+    }
+    private fun addCircle(latLng: LatLng, radius: Float){
+        var circleOptions = CircleOptions()
+        circleOptions.center(latLng)
+        circleOptions.radius(radius.toDouble())
+        circleOptions.strokeColor(Color.RED)
+        circleOptions.fillColor(Color.argb(64,255,0,0))
+        circleOptions.strokeWidth(4F)
+        mMap.addCircle(circleOptions)
     }
 }
