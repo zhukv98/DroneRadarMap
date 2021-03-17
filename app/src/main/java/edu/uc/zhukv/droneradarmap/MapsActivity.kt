@@ -31,7 +31,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mFusedLocationProviderClient: FusedLocationProviderClient
     private val DEFAULT_ZOOM = 15F
     private lateinit var marker: Marker
-    var mvm: MainViewModel = MainViewModel()
+    lateinit var mvm: MainViewModel
     private var GEOFENCE_RADIUS = 200F
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -182,8 +182,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             else -> super.onOptionsItemSelected(item)
         }
     }
-   private fun AirportMarkers(){
 
+   private fun AirportMarkers(){
+       mvm = MainViewModel()
        mvm.fetchAirports()
        var pos = ArrayList<LatLng>()
        mvm.airports.observeForever{
