@@ -9,9 +9,6 @@ class MainViewModel : ViewModel(){
 
     var airports: MutableLiveData<ArrayList<Airport>> = MutableLiveData()
     var airportService: AirportService = AirportService()
-    init{
-        fetchAirports()
-    }
     fun fetchAirports(){
         airports = airportService.fetchAirports()
     }

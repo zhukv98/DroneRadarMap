@@ -152,6 +152,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 return
             }
             mMap.isMyLocationEnabled = true;
+            populateAirports()
             AirportMarkers()
         }
     }
@@ -182,14 +183,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
+    private fun populateAirports() {
+        mvm = MainViewModel()
+    }
    private fun AirportMarkers(){
-       mvm = MainViewModel()
        mvm.fetchAirports()
        var pos = ArrayList<LatLng>()
        mvm.airports.observeForever{
            it.forEach{
-               pos.add(LatLng(it.latitude.toDouble(), it.longitude.toDouble()))
+               pos.add(LatLng(it.Latitude.toDouble(), it.Longitude.toDouble()))
            }
        }
        //Create MarkerOptions object

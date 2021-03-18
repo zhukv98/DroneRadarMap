@@ -2,8 +2,8 @@ package edu.uc.zhukv.droneradarmap.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class Airport (@SerializedName("city") var city: String, @SerializedName("country") var country: String, @SerializedName("iata") var iata: String, @SerializedName("latitude") var latitude: String, @SerializedName("longitude")var longitude: String){
+data class Airport (@SerializedName("city") var City: String, @SerializedName("country") var Country: String, @SerializedName("iata") var Iata: String, @SerializedName("latitude") var Latitude: String, @SerializedName("longitude")var Longitude: String){
     override fun toString(): String {
-        return "$city $country $iata  Lat: $latitude  Lng: $longitude"
+        return "$City $Country $Iata  Lat: $Latitude  Lng: $Longitude"
     }
 }
