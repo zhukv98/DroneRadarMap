@@ -51,4 +51,22 @@ class ExampleUnitTest {
         assertNotNull(allAirports)
         assertTrue(allAirports.size > 0)
     }
+    @Test
+    fun airportDTO_containsCVG() {
+        givenViewModelIsInitialized()
+        whenJSONDataAreReadAndParsed()
+        thenResultsShouldContainCVG()
+    }
+
+    private fun thenResultsShouldContainCVG() {
+        var containsCVG:Boolean = false
+        mvm.airports.observeForever {
+            it.forEach {
+                if (it.Iata.equals("CVG")) {
+                    containsCVG = true
+                }
+            }
+            assertTrue(containsCVG)
+        }
+    }
 }

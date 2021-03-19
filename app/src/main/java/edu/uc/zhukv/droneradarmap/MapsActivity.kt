@@ -18,7 +18,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
-import edu.uc.zhukv.droneradarmap.ui.main.MainViewModel
+import edu.uc.zhukv.droneradarmap.ui.main.MainViewModel as MainViewModel
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -199,7 +199,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
        for(airport in pos) {
            markerOptions.position(airport)
            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.aircraft))
-           marker = mMap.addMarker(markerOptions)
+           mMap.addMarker(markerOptions)
            addCircle(airport, GEOFENCE_RADIUS)
        }
     }
