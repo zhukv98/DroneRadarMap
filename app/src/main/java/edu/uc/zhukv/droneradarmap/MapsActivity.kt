@@ -7,10 +7,12 @@ import android.location.Location
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ArrayAdapter
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -18,6 +20,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import kotlinx.android.synthetic.main.main_fragment.*
 import edu.uc.zhukv.droneradarmap.ui.main.MainViewModel as MainViewModel
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -32,7 +35,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private val DEFAULT_ZOOM = 15F
     private lateinit var marker: Marker
     lateinit var mvm: MainViewModel
-    private var GEOFENCE_RADIUS = 200F
+    private var GEOFENCE_RADIUS = 50F
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +43,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         getLocationPermission()
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager
-                .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+//        val mapFragment = supportFragmentManager
+//                .findFragmentById(R.id.map) as SupportMapFragment
+//        mapFragment.getMapAsync(this)
     }
 
     private fun getDeviceLocation() {
@@ -188,24 +191,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
    private fun AirportMarkers(){
        mvm.fetchAirports()
-       var pos = ArrayList<LatLng>()
-       mvm.airports.observeForever{
-           it.forEach{
-               //Create MarkerOptions object
+       mvm.airports.observe(this, Observer {
+           it.forEach {
+                 //Create MarkerOptions object
                var position = LatLng(it.Latitude.toDouble(), it.Longitude.toDouble())
                val markerOptions = MarkerOptions()
                markerOptions.position(position)
 //               markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.aircraft))
                mMap.addMarker(markerOptions)
-               addCircle(position, GEOFENCE_RADIUS)
+//               addCircle(position, GEOFENCE_RADIUS)
            }
-       }
+       })
     }
     private fun addCircle(latLng: LatLng, radius: Float){
         var circleOptions = CircleOptions()
         circleOptions.center(latLng)
         circleOptions.radius(radius.toDouble())
-        circleOptions.strokeColor(Color.RED)
+        circleOptions.strokeColor(Color.argb(255,255,0,0))
         circleOptions.fillColor(Color.argb(64,255,0,0))
         circleOptions.strokeWidth(4F)
         mMap.addCircle(circleOptions)
