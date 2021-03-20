@@ -191,16 +191,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
        var pos = ArrayList<LatLng>()
        mvm.airports.observeForever{
            it.forEach{
-               pos.add(LatLng(it.Latitude.toDouble(), it.Longitude.toDouble()))
+               //Create MarkerOptions object
+               var position = LatLng(it.Latitude.toDouble(), it.Longitude.toDouble())
+               val markerOptions = MarkerOptions()
+               markerOptions.position(position)
+//               markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.aircraft))
+               mMap.addMarker(markerOptions)
+               addCircle(position, GEOFENCE_RADIUS)
            }
-       }
-       //Create MarkerOptions object
-       val markerOptions = MarkerOptions()
-       for(airport in pos) {
-           markerOptions.position(airport)
-           markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.aircraft))
-           mMap.addMarker(markerOptions)
-           addCircle(airport, GEOFENCE_RADIUS)
        }
     }
     private fun addCircle(latLng: LatLng, radius: Float){
