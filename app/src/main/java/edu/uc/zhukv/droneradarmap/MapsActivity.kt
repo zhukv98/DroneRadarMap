@@ -194,12 +194,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
        mvm.airports.observe(this, Observer {
            it.forEach {
                  //Create MarkerOptions object
+               if (it.Iata != ""){ // Filter out any location that are not airports
                var position = LatLng(it.Latitude.toDouble(), it.Longitude.toDouble())
                val markerOptions = MarkerOptions()
                markerOptions.position(position)
-//               markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.aircraft))
+               markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.airport))
                mMap.addMarker(markerOptions)
-//               addCircle(position, GEOFENCE_RADIUS)
+               addCircle(position, GEOFENCE_RADIUS)
+               }
            }
        })
     }
