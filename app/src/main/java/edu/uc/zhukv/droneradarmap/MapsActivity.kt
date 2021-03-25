@@ -35,7 +35,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private val DEFAULT_ZOOM = 15F
     private lateinit var marker: Marker
     lateinit var mvm: MainViewModel
-    private var GEOFENCE_RADIUS = 50F
+    private var GEOFENCE_RADIUS = 500F
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
