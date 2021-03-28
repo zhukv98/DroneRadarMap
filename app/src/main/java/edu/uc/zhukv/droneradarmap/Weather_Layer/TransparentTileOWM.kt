@@ -15,6 +15,9 @@ import kotlin.math.roundToInt
 class TransparentTileOWM(private val tileType: String) : TileProvider {
     private val opacityPaint = Paint()
 
+    init {
+        setOpacity(50)
+    }
     /**
      * This constructor assumes the `url` parameter contains three placeholders for the x- and y-positions of
      * the tile as well as the zoom level of the tile. The placeholders are assumed to be `{x}`,
@@ -30,10 +33,8 @@ class TransparentTileOWM(private val tileType: String) : TileProvider {
      * Sets the desired opacity of map [Tile]s, as a percentage where 0% is invisible and 100% is completely opaque.
      * @param opacity The desired opacity of map [Tile]s (as a percentage between 0 and 100, inclusive)
      */
-    //Only used here so set to private.
-    private fun setOpacity(opacity: Int) {
-        //Changed to kotlin function .roundToInt instead of .round and .toInt see: https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.math/round-to-int.html
-        val alpha = (opacity * 2.55).roundToInt() // 2.55 = 255 * 0.01
+    internal fun setOpacity(opacity: Int) {
+        val alpha = Math.round(opacity * 2.55).toInt() // 2.55 = 255 * 0.01
         opacityPaint.alpha = alpha
     }
 
@@ -103,7 +104,13 @@ class TransparentTileOWM(private val tileType: String) : TileProvider {
 
     companion object {
 
-        private const val OWM_TILE_URL =
+    /**
+     * This constructor assumes the `url` parameter contains three placeholders for the x- and y-positions of
+     * the tile as well as the zoom level of the tile. The placeholders are assumed to be `{x}`,
+     * `{y}`, and `{zoom}`. An example
+     * for an OpenWeatherMap URL would be: http://tile.openweathermap.org/map/precipitation/{zoom}/{x}/{y}.png
+     *
+     */        private const val OWM_TILE_URL =
             "http://tile.openweathermap.org/map/%s/%d/%d/%d.png?appid=d6d46d84c231bd013c9f0088629b0eb8"
     }
 

@@ -74,6 +74,7 @@ class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
                     == PackageManager.PERMISSION_GRANTED) {
                 var locationPermissionGranted = true
             } else {
+
                 //ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                         //PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION)
             }
@@ -83,6 +84,7 @@ class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
                                             permissions: Array<String>,
                                             grantResults: IntArray) {
         var locationPermissionGranted = false
+
         when (requestCode) {
             requestAccess -> {
 
