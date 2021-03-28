@@ -18,9 +18,14 @@ public const val MIN_TIME: Long = 5000
 public const val MIN_DISTANCE = 1000f
 public const val REQUEST_CODE = 101
 
+
 class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
 
-//Renamed without the underscore
+    val MIN_TIME: Long = 5000
+    val MIN_DISTANCE = 1000f
+    val REQUEST_CODE = 101
+    private val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: Int = 0
+
     var locationProvider = LocationManager.GPS_PROVIDER
 
     var weatherIcon: ImageView? = null
@@ -29,6 +34,7 @@ class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
 
     var mLocationManager: LocationManager? = null
     var mLocationListener: LocationManager? = null
+    private val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: Int = 0
 
     private val applicationContext: Context
         get() {
@@ -40,6 +46,7 @@ class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
          * device. The result of the permission request is handled by a callback,
          * onRequestPermissionsResult.
          */
+
         if (ContextCompat.checkSelfPermission(
                 this.applicationContext,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -62,6 +69,20 @@ class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
     ) {
         var locationPermissionGranted = false
         val requestAccess = null
+            if (ContextCompat.checkSelfPermission(this.applicationContext,
+                            Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+                var locationPermissionGranted = true
+            } else {
+                //ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                        //PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION)
+            }
+
+
+    internal fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<String>,
+                                            grantResults: IntArray) {
+        var locationPermissionGranted = false
         when (requestCode) {
             requestAccess -> {
 
