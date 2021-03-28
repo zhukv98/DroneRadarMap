@@ -24,6 +24,7 @@ class TransparentTileOWM(private val tileType: String):TileProvider {
     init {
         setOpacity(50)
     }
+
     /**
      * Sets the desired opacity of map [Tile]s, as a percentage where 0% is invisible and 100% is completely opaque.
      * @param opacity The desired opacity of map [Tile]s (as a percentage between 0 and 100, inclusive)
@@ -73,7 +74,7 @@ class TransparentTileOWM(private val tileType: String):TileProvider {
      * @return The [URL] of the desired tile image
      */
     private fun getTileUrl(x: Int, y: Int, zoom: Int): URL {
-        val tileUrl = String.format(OWM_TILE_URL, tileType, zoom, x, y)
+        val tileUrl = String.format(OPEN_WEATHER_MAP_TILE_URL, tileType, zoom, x, y)
         return try {
             URL(tileUrl)
         } catch (e: MalformedURLException) {
@@ -98,7 +99,7 @@ class TransparentTileOWM(private val tileType: String):TileProvider {
     }
 
     companion object {
-        private const val OWM_TILE_URL = "http://tile.openweathermap.org/map/%s/%d/%d/%d.png?appid=d6d46d84c231bd013c9f0088629b0eb8"
+        private const val OPEN_WEATHER_MAP_TILE_URL = "http://tile.openweathermap.org/map/%s/%d/%d/%d.png?appid=d6d46d84c231bd013c9f0088629b0eb8"
     }
 
 }

@@ -27,6 +27,7 @@ class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
 
     var mLocationManager: LocationManager? = null
     var mLocationListener: LocationManager? = null
+    private val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: Int = 0
 
     private val applicationContext: Context
         get() {
@@ -43,7 +44,6 @@ class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
                     == PackageManager.PERMISSION_GRANTED) {
                 var locationPermissionGranted = true
             } else {
-                val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0
                 //ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                         //PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION)
             }
