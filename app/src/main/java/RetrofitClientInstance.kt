@@ -9,8 +9,8 @@ object RetrofitClientInstance {
     val retrofitInstance : Retrofit?
         get () {
             if (retrofit == null) {
-                retrofit = retrofit2.retrofit.Builder()
-                        .baseURL(BASE_URL)
+                retrofit = retrofit2.Retrofit.Builder()
+                        .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build()
             }
