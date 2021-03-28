@@ -22,8 +22,12 @@ Searching for the best place to play with your drones without any trouble? Drone
 
 Use your Android Device to search any parks and attractions near your position where you can play with drones. For example, Summit Park is one of the best places to play with them because of its massive open area. Receive warnings on being under a restriction zone and show the its level. Noftify you when rain, ice/snow, or high winds are moving to your current position.
 ## Storyboard
-![IMG_6443](https://user-images.githubusercontent.com/51676111/106401765-db288280-63f3-11eb-9fcb-259fb0da6e1e.jpeg)
-![IMG_6444](https://user-images.githubusercontent.com/51676111/106401773-e24f9080-63f3-11eb-9cae-33b5df8f1bac.jpeg)
+![image](https://user-images.githubusercontent.com/47064092/110392833-936ec980-8037-11eb-8e46-21a8ea95ab49.png)
+![image](https://user-images.githubusercontent.com/47064092/110392994-d7fa6500-8037-11eb-8340-89f9161486ec.png)
+![image](https://user-images.githubusercontent.com/47064092/110393134-0b3cf400-8038-11eb-8adb-c4c494988c0b.png)
+![image](https://user-images.githubusercontent.com/47064092/110393237-2e67a380-8038-11eb-90ed-d7ca967f7d66.png)
+![image](https://user-images.githubusercontent.com/47064092/110393300-49d2ae80-8038-11eb-878a-a8c411845c26.png)
+
 ## Function Requirements
 #### Scenario
 As a user interested in launching drones, I want to search any nearby parks and attractions that are the best places to launch them without any difficulties so that it won't pose a threat to aircraft that are in the air. When I select a park or attraction, I want to see its zone restriction levels and the current weather there.
@@ -91,4 +95,4 @@ Current Weather: Overcast
 - Integration: Jeanette Kootin-Sanwu, Storm Hamilton
 
 ## Weekly Meetings
-Thursdays @ 5:30 through Teams.
+Thursdays @ 7:00 PM and Sundays @ 6:00 PM through Teams.
