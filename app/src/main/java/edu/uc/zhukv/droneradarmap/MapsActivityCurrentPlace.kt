@@ -18,8 +18,8 @@ class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
     val MIN_TIME: Long = 5000
     val MIN_DISTANCE = 1000f
     val REQUEST_CODE = 101
-
-    var location_provider = LocationManager.GPS_PROVIDER
+    private val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: Int = 0
+    var locationProvider = LocationManager.GPS_PROVIDER
 
     var weatherIcon: ImageView? = null
 
@@ -53,6 +53,7 @@ class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
                                             permissions: Array<String>,
                                             grantResults: IntArray) {
         var locationPermissionGranted = false
+
         when (requestCode) {
             PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION -> {
 

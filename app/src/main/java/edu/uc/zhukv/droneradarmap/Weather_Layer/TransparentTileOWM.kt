@@ -102,5 +102,4 @@ class TransparentTileOWM(private val tileType: String):TileProvider {
         private const val OPEN_WEATHER_MAP_TILE_URL = "http://tile.openweathermap.org/map/%s/%d/%d/%d.png?appid=d6d46d84c231bd013c9f0088629b0eb8"
     }
 
-
 }
