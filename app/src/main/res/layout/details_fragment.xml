@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailsFragment">
+
+    <ImageView
+        android:id="@+id/imgWindSpeedFlag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_constraintBottom_toBottomOf="@+id/txtWindSpeed"
+        android:src="@android:drawable/btn_star_big_off"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="294dp" />
+
+    <ImageView
+        android:id="@+id/imgWeatherVariable1Flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_constraintBottom_toBottomOf="@+id/txtWeatherVariable1"
+        android:src="@android:drawable/btn_star_big_off"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="346dp" />
+
+    <ImageView
+        android:id="@+id/imgWeatherVariable2Flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_constraintBottom_toBottomOf="@+id/txtWeatherVariable2"
+        android:src="@android:drawable/btn_star_big_off"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="397dp" />
+
+    <TextView
+        android:id="@+id/txtWindSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPrecipitation" />
+
+    <TextView
+        android:id="@+id/txtWeatherVariable1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWindSpeed" />
+
+    <TextView
+        android:id="@+id/txtWeatherVariable2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWeatherVariable1" />
+
+    <ImageView
+        android:id="@+id/imgPrecipitationFlag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_constraintBottom_toBottomOf="@+id/txtPrecipitation"
+        android:src="@android:drawable/btn_star_big_off"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="243dp" />
+
+    <TextView
+        android:id="@+id/txtPrecipitation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="64dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgCurrentFlag" />
+
+    <ImageView
+        android:id="@+id/imgCurrentFlag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/txtPrecipitationResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="64dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/txtPrecipitation"
+        app:layout_constraintTop_toBottomOf="@+id/imgCurrentFlag" />
+
+    <TextView
+        android:id="@+id/txtWindSpeedResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/txtWindSpeed"
+        app:layout_constraintTop_toBottomOf="@+id/txtPrecipitationResult" />
+
+    <TextView
+        android:id="@+id/txtWeatherVariable1Result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/txtWeatherVariable1"
+        app:layout_constraintTop_toBottomOf="@+id/txtWindSpeedResult" />
+
+    <TextView
+        android:id="@+id/txtWeatherVariable2Result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/txtWeatherVariable2"
+        app:layout_constraintTop_toBottomOf="@+id/txtWeatherVariable1Result" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
