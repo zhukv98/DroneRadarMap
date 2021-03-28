@@ -13,17 +13,35 @@ import android.view.MenuItem
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
-import androidx.annotation.NonNull
+import androidx.annotation.NonNullt
+import android.Manifest
+import android.content.pm.PackageManager
+import android.graphics.Color
+import android.os.Bundle
+import android.widget.ArrayAdapter
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+
+import android.view.View
+import android.widget.AdapterView
+import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.*
+import kotlinx.android.synthetic.main.main_fragment.*
+import edu.uc.zhukv.droneradarmap.ui.main.MainViewModel as MainViewModel
+import edu.uc.zhukv.droneradarmap.Weather_Layer.TransparentTileOWM
+import java.net.MalformedURLException
+import java.net.URL
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -35,6 +53,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private val LOCATION_PERMISSION_REQUEST_CODE = 1234
     private lateinit var mFusedLocationProviderClient: FusedLocationProviderClient
     private val DEFAULT_ZOOM = 15F
+    private val FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION
+    private val COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION
+    private lateinit var marker: Marker
+    lateinit var mvm: MainViewModel
+    private var GEOFENCE_RADIUS = 500F
+
+    private val OWM_TILE_URL = "http://tile.openweathermap.org/map/%s/%d/%d/%d.png?appid=d6d46d84c231bd013c9f0088629b0eb8"
+    private var spinner: Spinner? = null
+    private var tileType = "clouds"
+    private var tileOver: TileOverlay? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +70,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mSearchText = findViewById(R.id.input_search)
         getLocationPermission()
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//        val mapFragment = supportFragmentManager
-//                .findFragmentById(R.id.map) as SupportMapFragment
-//        mapFragment.getMapAsync(this)
     }
     private fun init(){
         mSearchText.setOnEditorActionListener{ textView, actionId, keyEvent ->
@@ -67,6 +92,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             val address = list[0]
             Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show()
         }
+    }
+
+        getLocationPermission()
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
     }
 
 
@@ -150,8 +179,66 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         }
+
+
+        spinner = findViewById(R.id.tileType)
+        val tileName = arrayOf("Clouds", "Temperature", "Precipitations", "Snow", "Rain", "Wind", "Sea level press.")
+        val adpt: ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, tileName)
+        spinner?.adapter = adpt
+        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
+                // Check click
+                when (position) {
+                    0 -> tileType = "clouds"
+                    1 -> tileType = "temp"
+                    2 -> tileType = "precipitation"
+                    3 -> tileType = "snow"
+                    4 -> tileType = "rain"
+                    5 -> tileType = "wind"
+                    6 -> tileType = "pressure"
+                }
+                tileOver?.remove()
+                setUpMap()
+            }
+        }
+        val mapFragment = supportFragmentManager
+                .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+
     }
 
+    /**
+     * This is where we can add markers or lines, add listeners or move the camera. In this case, we
+     * just add a marker near Africa.
+     *
+     *
+     * This should only be called once and when we are sure that [.mMap] is not null.
+     */
+    private fun setUpMap() {
+        // Add weather tile
+        tileOver = mMap.addTileOverlay(TileOverlayOptions().tileProvider(createTileProvider()));
+        //tileOver = mMap.addTileOverlay(TileOverlayOptions().tileProvider(createTransparentTileProvider()))
+    }
+
+    private fun createTransparentTileProvider(): TileProvider {
+        return TransparentTileOWM(tileType)
+    }
+
+    private fun createTileProvider(): TileProvider {
+        return object : UrlTileProvider(256, 256) {
+            override fun getTileUrl(x: Int, y: Int, zoom: Int): URL {
+                val fUrl = String.format(OWM_TILE_URL, tileType, zoom, x, y)
+                var url: URL? = null
+                try {
+                    url = URL(fUrl)
+                } catch (mfe: MalformedURLException) {
+                    mfe.printStackTrace()
+                }
+                return url!!
+            }
+        }
+    }
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -163,11 +250,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
-        // Add a marker in Sydney and move the camera
-//        val sydney = LatLng(-34.0, 151.0)
-//        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
         if (mLocationPermissionGranted) {
             getDeviceLocation()
             if (ActivityCompat.checkSelfPermission(
@@ -182,6 +264,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
             mMap.isMyLocationEnabled = true
             init()
+            populateAirports()
+            AirportMarkers()
+
         }
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -210,5 +295,33 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+    private fun populateAirports() {
+        mvm = MainViewModel()
+    }
+   private fun AirportMarkers(){
+       mvm.fetchAirports()
+       mvm.airports.observe(this, Observer {
+           it.forEach {
+                 //Create MarkerOptions object
+               if (it.Iata != ""){ // Filter out any location that are not airports
+               var position = LatLng(it.Latitude.toDouble(), it.Longitude.toDouble())
+               val markerOptions = MarkerOptions()
+               markerOptions.position(position)
+               markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.airport))
+               mMap.addMarker(markerOptions)
+               addCircle(position, GEOFENCE_RADIUS)
+               }
+           }
+       })
+    }
+    private fun addCircle(latLng: LatLng, radius: Float){
+        var circleOptions = CircleOptions()
+        circleOptions.center(latLng)
+        circleOptions.radius(radius.toDouble())
+        circleOptions.strokeColor(Color.argb(255,255,0,0))
+        circleOptions.fillColor(Color.argb(64,255,0,0))
+        circleOptions.strokeWidth(4F)
+        mMap.addCircle(circleOptions)
     }
 }
