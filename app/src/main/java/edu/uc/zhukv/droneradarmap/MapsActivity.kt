@@ -1,16 +1,34 @@
 package edu.uc.zhukv.droneradarmap
 
+
+import android.Manifest
+import android.content.pm.PackageManager
+import android.graphics.Color
+import android.location.Location
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.ArrayAdapter
+import androidx.annotation.NonNull
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+
 import android.view.View
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
+
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import kotlinx.android.synthetic.main.main_fragment.*
+import edu.uc.zhukv.droneradarmap.ui.main.MainViewModel as MainViewModel
+
 import edu.uc.zhukv.droneradarmap.Weather_Layer.TransparentTileOWM
 import java.net.MalformedURLException
 import java.net.URL
@@ -20,18 +38,111 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
 
+
+    private val FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION
+    private val COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION
+    private var mLocationPermissionGranted = false
+    private val LOCATION_PERMISSION_REQUEST_CODE = 1234
+    private lateinit var mFusedLocationProviderClient: FusedLocationProviderClient
+    private val DEFAULT_ZOOM = 15F
+    private lateinit var marker: Marker
+    lateinit var mvm: MainViewModel
+    private var GEOFENCE_RADIUS = 500F
+
     private val OWM_TILE_URL = "http://tile.openweathermap.org/map/%s/%d/%d/%d.png?appid=d6d46d84c231bd013c9f0088629b0eb8"
     private var spinner: Spinner? = null
     private var tileType = "clouds"
     private var tileOver: TileOverlay? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
+
+        getLocationPermission()
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//        val mapFragment = supportFragmentManager
-//                .findFragmentById(R.id.map) as SupportMapFragment
-//        mapFragment.getMapAsync(this)
+    }
+
+    private fun getDeviceLocation() {
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        if (mLocationPermissionGranted) {
+            if (ActivityCompat.checkSelfPermission(
+                            this,
+                            Manifest.permission.ACCESS_FINE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                            this,
+                            Manifest.permission.ACCESS_COARSE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                return
+            }
+            val location = mFusedLocationProviderClient.lastLocation
+            location.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    var currentLocation:Location? = task.result
+                    if (currentLocation != null) {
+                        moveCamera(
+                                LatLng(currentLocation.latitude, currentLocation.longitude),
+                                DEFAULT_ZOOM
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    private fun moveCamera(latLng: LatLng, zoom: Float) {
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
+    }
+
+    private fun getLocationPermission() {
+        var permissions = arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+        )
+        if (ContextCompat.checkSelfPermission(
+                        this.applicationContext,
+                        FINE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            if (ContextCompat.checkSelfPermission(
+                            this.applicationContext,
+                            COARSE_LOCATION
+                    ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                mLocationPermissionGranted = true
+                val mapFragment = supportFragmentManager
+                        .findFragmentById(R.id.map) as SupportMapFragment
+                mapFragment.getMapAsync(this)
+            } else {
+                ActivityCompat.requestPermissions(
+                        this,
+                        permissions,
+                        LOCATION_PERMISSION_REQUEST_CODE
+                )
+            }
+        } else {
+            ActivityCompat.requestPermissions(this, permissions, LOCATION_PERMISSION_REQUEST_CODE)
+        }
+    }
+    override fun onRequestPermissionsResult(requestCode: Int, @NonNull permissions: Array<String>, @NonNull grantResults: IntArray)
+    {
+        when (requestCode) {
+            LOCATION_PERMISSION_REQUEST_CODE -> {
+                if (grantResults.isNotEmpty()) {
+                    for(permission in grantResults){
+                        if(permission != PackageManager.PERMISSION_GRANTED){
+                            mLocationPermissionGranted = false
+                            return
+                        }
+                    }
+                    mLocationPermissionGranted = true
+                    val mapFragment = supportFragmentManager
+                            .findFragmentById(R.id.map) as SupportMapFragment
+                    mapFragment.getMapAsync(this)
+                }
+            }
+        }
 
         spinner = findViewById(R.id.tileType)
         val tileName = arrayOf("Clouds", "Temperature", "Precipitations", "Snow", "Rain", "Wind", "Sea level press.")
@@ -57,6 +168,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
                 .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
     }
 
     /**
@@ -102,9 +214,76 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        if (mLocationPermissionGranted) {
+            getDeviceLocation()
+            if (ActivityCompat.checkSelfPermission(
+                            this,
+                            Manifest.permission.ACCESS_FINE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                            this,
+                            Manifest.permission.ACCESS_COARSE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                return
+            }
+            mMap.isMyLocationEnabled = true;
+            populateAirports()
+            AirportMarkers()
+        }
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.map_options, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Change the map type based on the user's selection.
+        return when (item.itemId) {
+            R.id.normal_map -> {
+                mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
+                true
+            }
+            R.id.hybrid_map -> {
+                mMap.mapType = GoogleMap.MAP_TYPE_HYBRID
+                true
+            }
+            R.id.satellite_map -> {
+                mMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
+                true
+            }
+            R.id.terrain_map -> {
+                mMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+    private fun populateAirports() {
+        mvm = MainViewModel()
+    }
+   private fun AirportMarkers(){
+       mvm.fetchAirports()
+       mvm.airports.observe(this, Observer {
+           it.forEach {
+                 //Create MarkerOptions object
+               if (it.Iata != ""){ // Filter out any location that are not airports
+               var position = LatLng(it.Latitude.toDouble(), it.Longitude.toDouble())
+               val markerOptions = MarkerOptions()
+               markerOptions.position(position)
+               markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.airport))
+               mMap.addMarker(markerOptions)
+               addCircle(position, GEOFENCE_RADIUS)
+               }
+           }
+       })
+    }
+    private fun addCircle(latLng: LatLng, radius: Float){
+        var circleOptions = CircleOptions()
+        circleOptions.center(latLng)
+        circleOptions.radius(radius.toDouble())
+        circleOptions.strokeColor(Color.argb(255,255,0,0))
+        circleOptions.fillColor(Color.argb(64,255,0,0))
+        circleOptions.strokeWidth(4F)
+        mMap.addCircle(circleOptions)
     }
 }
