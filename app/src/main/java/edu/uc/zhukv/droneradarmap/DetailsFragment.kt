@@ -9,10 +9,6 @@ import android.view.ViewGroup
 
 class DetailsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = DetailsFragment()
-    }
-
     private lateinit var viewModel: DetailsViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -26,4 +22,7 @@ class DetailsFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
+    companion object {
+        fun newInstance() = DetailsFragment()
+    }
 }

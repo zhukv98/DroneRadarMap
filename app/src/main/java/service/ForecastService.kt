@@ -28,10 +28,11 @@ class ForecastService(application: Application) {
     internal suspend fun fetchForecast(forecast: Forecast): MutableLiveData<ArrayList<Forecast>> {
         //withContext(Dispatcher.IO)
         var _forecast = MutableLiveData<ArrayList<Forecast>>()
-        val service = RetrofitClientInstance.retrofitInstance?.create(IRetrofitWeatherDAO::class.java)
+        val service =
+            RetrofitClientInstance.retrofitInstance?.create(IRetrofitWeatherDAO::class.java)
         val forecast = async { service?.getAllForecast() }
 
-        updateLocalForecast(forecast.await())
+        updateLocalForecast(forecast.await() as ArrayList<Forecast>)
 
         val call = service?.getAllForecast()
         call?.enqueue(object : Callback<ArrayList<Forecast>> {
@@ -42,8 +43,8 @@ class ForecastService(application: Application) {
             }
 
             override fun onResponse(
-                    call: Call<ArrayList<Forecast>>,
-                    response: Response<ArrayList<Forecast>>
+                call: Call<ArrayList<Forecast>>,
+                response: Response<ArrayList<Forecast>>
             ) {
                 TODO("Not yet implemented")
                 _forecast.value = response.body()
@@ -54,13 +55,13 @@ class ForecastService(application: Application) {
         return _forecast
 
     }
-}
+
 
     private fun async(function: () -> Any?): Any {
         TODO("Not yet implemented")
     }
 
-    private suspend fun updateLocalForecast(forecast: Any) {
+    private suspend fun updateLocalForecast(forecast: ArrayList<Forecast>) {
         TODO("Not yet implemented")
         var sizeOfForecast = forecast?.size
         try {
@@ -71,11 +72,13 @@ class ForecastService(application: Application) {
         }
     }
 
-    fun getLocalRetrofitWeatherDAO() : IWeatherDAO {
-    TODO("Not yet implemented")
-        val db = Room.databaseBuilder(application, MapsActivityCurrentPlace::class.java, "DroneRadar").build()
+    fun getLocalRetrofitWeatherDAO(): IWeatherDAO {
+        TODO("Not yet implemented")
+/*        val db =
+            Room.databaseBuilder(application, MapsActivityCurrentPlace::class.java, "DroneRadar")
+                .build()
         val localIRetrofitWeatherDAO = db.localRetrofitWeatherDAO()
-        return localIRetrofitWeatherDAO
+        return localIRetrofitWeatherDAO*/
     }
 
     internal fun save(forecast: Forecast) {
@@ -90,6 +93,7 @@ class ForecastService(application: Application) {
     private fun Any?.enqueue(callback: Callback<java.util.ArrayList<Forecast>>) {
         TODO("Not yet implemented")
     }
+}
 
 
 

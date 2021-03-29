@@ -1,19 +1,16 @@
 package edu.uc.zhukv.droneradarmap
 
-import android.Manifest
-import android.content.pm.PackageManager
+
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
-import androidx.annotation.NonNullt
+import androidx.annotation.NonNull
 import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -47,8 +44,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var mSearchText: EditText
-    private val FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION
-    private val COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION
+
     private var mLocationPermissionGranted = false
     private val LOCATION_PERMISSION_REQUEST_CODE = 1234
     private lateinit var mFusedLocationProviderClient: FusedLocationProviderClient
@@ -57,7 +53,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private val COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION
     private lateinit var marker: Marker
     lateinit var mvm: MainViewModel
-    private var GEOFENCE_RADIUS = 500F
+    private val GEOFENCE_RADIUS = 500F
 
     //Renamed this without underscore as per naming conventions insisted by Kotlin Formatting
     private val tileURL =
@@ -95,7 +91,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             val address = list[0]
             Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show()
         }
-    }
+
 
         getLocationPermission()
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
