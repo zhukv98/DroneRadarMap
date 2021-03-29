@@ -24,7 +24,6 @@ class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
     val MIN_TIME: Long = 5000
     val MIN_DISTANCE = 1000f
     val REQUEST_CODE = 101
-    private val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: Int = 0
 
     var locationProvider = LocationManager.GPS_PROVIDER
 
@@ -62,25 +61,29 @@ class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
         }
 
 
-    fun onRequestPermissionsResult(
+    internal fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
         grantResults: IntArray
     ) {
         var locationPermissionGranted = false
         val requestAccess = null
-            if (ContextCompat.checkSelfPermission(this.applicationContext,
-                            Manifest.permission.ACCESS_FINE_LOCATION)
-                    == PackageManager.PERMISSION_GRANTED) {
-                var locationPermissionGranted = true
-            } else {
+        if (ContextCompat.checkSelfPermission(
+                this.applicationContext,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+            == PackageManager.PERMISSION_GRANTED
+        ) {
+            var locationPermissionGranted = true
+        } else {
 
-                //ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                        //PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION)
-            }
+            //ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+            //PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION)
+        }
+    }
 
 
-    internal fun onRequestPermissionsResult(requestCode: Int,
+   /* internal fun onRequestPermissionsResult(requestCode: Int,
                                             permissions: Array<String>,
                                             grantResults: IntArray) {
         var locationPermissionGranted = false
@@ -97,7 +100,7 @@ class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
             }
         }
         updateLocationUI()
-    }
+    }*/
 
 
     private fun updateLocationUI() {

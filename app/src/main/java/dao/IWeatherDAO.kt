@@ -13,7 +13,7 @@ interface IWeatherDAO {
     @GET("/v1/geocode/{latitude}/{longitude}/forecast/hourly/{12}hour.json")
     fun getForecastByGeoCode(): Call<ArrayList<Forecast>>
     fun save(forecast: Forecast)
-    fun insertAll(forecast: Unit)
+    fun insertAll(forecast: ArrayList<Forecast>)
 
 
 }

@@ -110,7 +110,7 @@ class TransparentTileOWM(private val tileType: String) : TileProvider {
      * `{y}`, and `{zoom}`. An example
      * for an OpenWeatherMap URL would be: http://tile.openweathermap.org/map/precipitation/{zoom}/{x}/{y}.png
      *
-     */        private const val OWM_TILE_URL =
+     */        private const val OPEN_WEATHER_MAP_TILE_URL =
             "http://tile.openweathermap.org/map/%s/%d/%d/%d.png?appid=d6d46d84c231bd013c9f0088629b0eb8"
     }
 
