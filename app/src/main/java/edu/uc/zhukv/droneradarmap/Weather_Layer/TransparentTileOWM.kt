@@ -78,7 +78,7 @@ class TransparentTileOWM(private val tileType: String) : TileProvider {
      * @return The [URL] of the desired tile image
      */
     private fun getTileUrl(x: Int, y: Int, zoom: Int): URL {
-        val tileUrl = String.format(OPEN_WEATHER_MAP_TILE_URL, tileType, zoom, x, y)
+        val tileUrl = String.format(OWM_TILE_URL, tileType, zoom, x, y)
         return try {
             URL(tileUrl)
         } catch (e: MalformedURLException) {
