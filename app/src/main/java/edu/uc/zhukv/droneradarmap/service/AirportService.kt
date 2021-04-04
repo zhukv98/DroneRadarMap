@@ -10,7 +10,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class AirportService {
-    fun fetchAirports(): MutableLiveData<ArrayList<Airport>> {
+    internal fun fetchAirports(): MutableLiveData<ArrayList<Airport>> {
         var _airports = MutableLiveData<ArrayList<Airport>>()
         var service = RetrofitClientInstance.retrofitInstance?.create(AirportDAO::class.java)
         val call = service?.getAllAirports()

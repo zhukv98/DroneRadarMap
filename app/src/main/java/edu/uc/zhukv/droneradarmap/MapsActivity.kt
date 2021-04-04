@@ -29,6 +29,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private var mLocationPermissionGranted = false
     private val LOCATION_PERMISSION_REQUEST_CODE = 1234
     private lateinit var mFusedLocationProviderClient: FusedLocationProviderClient
+
+    class FusedLocationProviderClient {
+
+    }
+
     private val DEFAULT_ZOOM = 15F
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,7 +63,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             val location = mFusedLocationProviderClient.lastLocation
             location.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    var currentLocation:Location? = task.result
+                    val currentLocation:Location? = task.result
                     if (currentLocation != null) {
                         moveCamera(
                             LatLng(currentLocation.latitude, currentLocation.longitude),
@@ -75,7 +80,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun getLocationPermission() {
-        var permissions = arrayOf(
+        val permissions = arrayOf(
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION
         )
@@ -152,7 +157,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             ) {
                 return
             }
-            mMap.isMyLocationEnabled = true;
+            mMap.isMyLocationEnabled = true
         }
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
