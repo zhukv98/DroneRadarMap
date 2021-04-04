@@ -34,7 +34,7 @@ class TransparentTileOWM(private val tileType: String) : TileProvider {
      * @param opacity The desired opacity of map [Tile]s (as a percentage between 0 and 100, inclusive)
      */
     internal fun setOpacity(opacity: Int) {
-        val alpha = Math.round(opacity * 2.55).toInt() // 2.55 = 255 * 0.01
+        val alpha = (opacity * 2.55).roundToInt() // 2.55 = 255 * 0.01
         opacityPaint.alpha = alpha
     }
 
