@@ -1,4 +1,4 @@
-package main
+package edu.uc.zhukv.droneradarmap.main
 
 class CurrentWeatherConditions() {
 
