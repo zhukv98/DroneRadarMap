@@ -1,4 +1,4 @@
-package edu.uc.zhukv.droneradarmap.dto
+package dto
 
 data class CurrentWeather(
     val forecasts: List<Forecast>,

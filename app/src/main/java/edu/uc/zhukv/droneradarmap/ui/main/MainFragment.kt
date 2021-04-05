@@ -30,7 +30,7 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         viewModel.airports.observe(viewLifecycleOwner, Observer{
-                airports -> actAirport.setAdapter(ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, airports))
+                airports -> actAirport.setAdapter(ArrayAdapter(context!!, R.layout.support_simple_spinner_dropdown_item, airports))
         })
         viewModel.fetchAirports()
     }

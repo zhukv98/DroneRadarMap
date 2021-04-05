@@ -1,4 +1,4 @@
-package edu.uc.zhukv.droneradarmap.dto
+package dto
 
 import android.app.usage.UsageEvents
 

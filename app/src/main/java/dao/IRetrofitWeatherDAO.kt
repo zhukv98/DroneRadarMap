@@ -1,6 +1,6 @@
-package edu.uc.zhukv.droneradarmap.dao
+package dao
 
-import edu.uc.zhukv.droneradarmap.dto.CurrentWeather
+import dto.CurrentWeather
 import retrofit2.Call
 import retrofit2.http.GET
 

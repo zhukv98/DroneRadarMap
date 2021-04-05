@@ -1,3 +1,3 @@
-package edu.uc.zhukv.droneradarmap.dto
+package dto
 
 annotation class SerializedName(val value: String)
