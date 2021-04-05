@@ -7,7 +7,6 @@ import android.location.LocationManager
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
 class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {

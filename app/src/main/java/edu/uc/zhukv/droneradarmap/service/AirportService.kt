@@ -11,8 +11,8 @@ import retrofit2.Response
 
 class AirportService {
     fun fetchAirports(): MutableLiveData<ArrayList<Airport>> {
-        var _airports = MutableLiveData<ArrayList<Airport>>()
-        var service = RetrofitClientInstance.retrofitInstance?.create(AirportDAO::class.java)
+        val airports = MutableLiveData<ArrayList<Airport>>()
+        val service = RetrofitClientInstance.retrofitInstance?.create(AirportDAO::class.java)
         val call = service?.getAllAirports()
         call?.enqueue(object : Callback<ArrayList<Airport>> {
             override fun onResponse(
@@ -20,15 +20,13 @@ class AirportService {
                     response: Response<ArrayList<Airport>>
             ) {
                 Log.d("TAG", "Success")
-                _airports.value = response.body()
+                airports.value = response.body()
             }
 
             override fun onFailure(call: Call<ArrayList<Airport>>, t: Throwable) {
                 Log.d("TAG", "Failed", t)
-                val j = 1 + 1
-                val i = 1 + 1
             }
         })
-        return _airports
+        return airports
     }
 }
