@@ -1,4 +1,4 @@
-package dto
+package edu.uc.zhukv.droneradarmap.dto
 
 //filter out what is not needed and see if it is necessary
 

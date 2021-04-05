@@ -1,4 +1,4 @@
-package service
+package edu.uc.zhukv.droneradarmap.service
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
