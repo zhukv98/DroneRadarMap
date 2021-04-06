@@ -8,29 +8,36 @@
      -->
 
     <!-- SDK permission requirement -->
-<!--    <uses-permission android:name="android.permission.BLUETOOTH" />-->
-<!--    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-<!--    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />-->
-<!--    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />-->
-<!--    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />-->
-<!--    <uses-permission android:name="android.permission.VIBRATE" />-->
-<!--    <uses-permission android:name="android.permission.WAKE_LOCK" />-->
-
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.usb.host"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.usb.accessory"
+        android:required="true" />
 
     <application
+        android:name=".MApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DroneRadarMap">
-
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -39,22 +46,41 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
+        <uses-library android:name="com.android.future.usb.accessory" />
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+        <meta-data
+            android:name="com.dji.sdk.API_KEY"
+            android:value="d9d76133929c851925e29e87"/>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCbIVUX4tXOUcv30tJq-HtIBXBuTelOJLM" />
-        <meta-data
-            android:name="com.dji.sdk.API_KEY"
-            android:value="d9d76133929c851925e29e87" />
 
+        <activity
+            android:name="dji.sdk.sdkmanager.DJIAoaControllerActivity"
+            android:theme="@android:style/Theme.Translucent" >
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"
+                android:resource="@xml/accessory_filter" />
+        </activity>
+        <activity android:name=".ConnectionActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"
+                android:resource="@xml/accessory_filter" />
+        </activity>
         <activity
             android:name=".MapsActivity"
             android:label="Drone Radar Map">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
-
 </manifest>
