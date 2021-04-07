@@ -6,6 +6,8 @@
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="30dp"
+    android:layout_width="30dp" />
 <!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:map="http://schemas.android.com/apk/res-auto"
