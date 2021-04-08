@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailsFragment">
+
+    <TextView
+        android:id="@+id/txtWindSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:text="Current Wind Speed: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPrecipitation" />
+
+    <TextView
+        android:id="@+id/txtWeatherVariable1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:text="Weather Variable 1:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWindSpeed" />
+
+    <TextView
+        android:id="@+id/txtWeatherVariable2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:text="Weather Variable 2:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWeatherVariable1" />
+
+    <TextView
+        android:id="@+id/txtPrecipitation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="64dp"
+        android:text="Chance of Precipitation:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgCurrentFlag" />
+
+    <ImageView
+        android:id="@+id/imgCurrentFlag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/txtPrecipitationResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="64dp"
+        android:text="0%"
+        app:layout_constraintStart_toEndOf="@+id/txtPrecipitation"
+        app:layout_constraintTop_toBottomOf="@+id/imgCurrentFlag" />
+
+    <TextView
+        android:id="@+id/txtWindSpeedResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:text="2 mph"
+        app:layout_constraintStart_toEndOf="@+id/txtWindSpeed"
+        app:layout_constraintTop_toBottomOf="@+id/txtPrecipitationResult" />
+
+    <TextView
+        android:id="@+id/txtWeatherVariable1Result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:text="Something"
+        app:layout_constraintStart_toEndOf="@+id/txtWeatherVariable1"
+        app:layout_constraintTop_toBottomOf="@+id/txtWindSpeedResult" />
+
+    <TextView
+        android:id="@+id/txtWeatherVariable2Result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:text="Something"
+        app:layout_constraintStart_toEndOf="@+id/txtWeatherVariable2"
+        app:layout_constraintTop_toBottomOf="@+id/txtWeatherVariable1Result" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
