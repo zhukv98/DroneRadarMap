@@ -18,7 +18,9 @@ class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
     val MIN_DISTANCE = 1000f
     val REQUEST_CODE = 101
 
-    var location_provider = LocationManager.GPS_PROVIDER
+    private val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: Int = 0
+    var locationProvider = LocationManager.GPS_PROVIDER
+
 
     var weatherIcon: ImageView? = null
 
@@ -37,6 +39,7 @@ class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
          * device. The result of the permission request is handled by a callback,
          * onRequestPermissionsResult.
          */
+
             if (ContextCompat.checkSelfPermission(this.applicationContext,
                             Manifest.permission.ACCESS_FINE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED) {
@@ -58,7 +61,9 @@ class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
 
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.isNotEmpty() &&
-                        grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
                     locationPermissionGranted = true
                 }
             }

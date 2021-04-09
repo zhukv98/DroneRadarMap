@@ -38,7 +38,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         getLocationPermission()
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
-                .findFragmentById(R.id.map) as SupportMapFragment
+
+            .findFragmentById(R.id.map) as SupportMapFragment
+
         mapFragment.getMapAsync(this)
     }
 
@@ -46,12 +48,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         if (mLocationPermissionGranted) {
             if (ActivityCompat.checkSelfPermission(
-                            this,
-                            Manifest.permission.ACCESS_FINE_LOCATION
-                    ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                            this,
-                            Manifest.permission.ACCESS_COARSE_LOCATION
-                    ) != PackageManager.PERMISSION_GRANTED
+
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+
             ) {
                 return
             }
@@ -61,8 +65,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     var currentLocation:Location? = task.result
                     if (currentLocation != null) {
                         moveCamera(
-                                LatLng(currentLocation.latitude, currentLocation.longitude),
-                                DEFAULT_ZOOM
+
+                            LatLng(currentLocation.latitude, currentLocation.longitude),
+                            DEFAULT_ZOOM
+
                         )
                     }
                 }
@@ -76,28 +82,29 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun getLocationPermission() {
         var permissions = arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
         )
         if (ContextCompat.checkSelfPermission(
-                        this.applicationContext,
-                        FINE_LOCATION
-                ) == PackageManager.PERMISSION_GRANTED
+                this.applicationContext,
+                FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
         ) {
             if (ContextCompat.checkSelfPermission(
-                            this.applicationContext,
-                            COARSE_LOCATION
-                    ) == PackageManager.PERMISSION_GRANTED
+                    this.applicationContext,
+                    COARSE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
             ) {
                 mLocationPermissionGranted = true
                 val mapFragment = supportFragmentManager
-                        .findFragmentById(R.id.map) as SupportMapFragment
+                    .findFragmentById(R.id.map) as SupportMapFragment
                 mapFragment.getMapAsync(this)
             } else {
                 ActivityCompat.requestPermissions(
-                        this,
-                        permissions,
-                        LOCATION_PERMISSION_REQUEST_CODE
+                    this,
+                    permissions,
+                    LOCATION_PERMISSION_REQUEST_CODE
+
                 )
             }
         } else {
@@ -117,7 +124,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     }
                     mLocationPermissionGranted = true
                     val mapFragment = supportFragmentManager
-                            .findFragmentById(R.id.map) as SupportMapFragment
+
+                        .findFragmentById(R.id.map) as SupportMapFragment
+
                     mapFragment.getMapAsync(this)
                 }
             }
@@ -143,12 +152,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         if (mLocationPermissionGranted) {
             getDeviceLocation()
             if (ActivityCompat.checkSelfPermission(
-                            this,
-                            Manifest.permission.ACCESS_FINE_LOCATION
-                    ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                            this,
-                            Manifest.permission.ACCESS_COARSE_LOCATION
-                    ) != PackageManager.PERMISSION_GRANTED
+
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
             ) {
                 return
             }
