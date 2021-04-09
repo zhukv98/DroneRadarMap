@@ -38,7 +38,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         getLocationPermission()
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
+
             .findFragmentById(R.id.map) as SupportMapFragment
+
         mapFragment.getMapAsync(this)
     }
 
@@ -46,12 +48,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         if (mLocationPermissionGranted) {
             if (ActivityCompat.checkSelfPermission(
+
                     this,
                     Manifest.permission.ACCESS_FINE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                     this,
                     Manifest.permission.ACCESS_COARSE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED
+
             ) {
                 return
             }
@@ -61,8 +65,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     var currentLocation:Location? = task.result
                     if (currentLocation != null) {
                         moveCamera(
+
                             LatLng(currentLocation.latitude, currentLocation.longitude),
                             DEFAULT_ZOOM
+
                         )
                     }
                 }
@@ -98,6 +104,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     this,
                     permissions,
                     LOCATION_PERMISSION_REQUEST_CODE
+
                 )
             }
         } else {
@@ -117,7 +124,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     }
                     mLocationPermissionGranted = true
                     val mapFragment = supportFragmentManager
+
                         .findFragmentById(R.id.map) as SupportMapFragment
+
                     mapFragment.getMapAsync(this)
                 }
             }
@@ -143,6 +152,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         if (mLocationPermissionGranted) {
             getDeviceLocation()
             if (ActivityCompat.checkSelfPermission(
+
                     this,
                     Manifest.permission.ACCESS_FINE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
