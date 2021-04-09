@@ -1,6 +1,6 @@
-package main
+package edu.uc.zhukv.droneradarmap.service
 
-class CurrentWeatherConditions() {
+class FlagSystemService() {
 
     val red_flag = 0
     val yellow_flag = 1

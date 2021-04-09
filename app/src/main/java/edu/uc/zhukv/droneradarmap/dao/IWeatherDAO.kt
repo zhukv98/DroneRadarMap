@@ -1,9 +1,8 @@
-package dao
+package edu.uc.zhukv.droneradarmap.dao
 
-import dto.Forecast
+import edu.uc.zhukv.droneradarmap.dto.Forecast
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Query
 
 //There has to be a video by the professor that shows how to replace those parameters in the GET call of the IRetrofitWeather DAO.
 // We think it's in module 5. Find it, watch it, and implement it to replace the longitude and latitude values

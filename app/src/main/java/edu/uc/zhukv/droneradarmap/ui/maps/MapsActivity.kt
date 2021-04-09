@@ -1,4 +1,4 @@
-package edu.uc.zhukv.droneradarmap
+package edu.uc.zhukv.droneradarmap.ui.maps
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -17,7 +17,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.tasks.Task
+import edu.uc.zhukv.droneradarmap.R
 
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {

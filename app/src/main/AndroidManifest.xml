@@ -33,7 +33,7 @@
             android:value="AIzaSyCbIVUX4tXOUcv30tJq-HtIBXBuTelOJLM" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".ui.maps.MapsActivity"
             android:label="Drone Radar Map">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

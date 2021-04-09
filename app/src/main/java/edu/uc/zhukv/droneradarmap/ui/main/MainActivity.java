@@ -1,3 +1,5 @@
+package edu.uc.zhukv.droneradarmap.ui.main;
+
 import android.location.LocationManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;

@@ -72,7 +72,7 @@ Current Weather: Overcast
 ## Class Diagram
  ![DroneUML](https://user-images.githubusercontent.com/55035232/106397933-f8525680-63dd-11eb-88f1-f94e0094307a.png)
 ## Class Diagram Description
-- MainActivity: A map with the weather radar to show the current positions of rain, ice/snow, or winds depending on the setting
+- edu.uc.zhukv.droneradarmap.ui.main.MainActivity: A map with the weather radar to show the current positions of rain, ice/snow, or winds depending on the setting
 - MainViewModel: A screen that shows the main overview of the map
 - MapView: A screen that shows the overview of the map
 - Park: Noun class that represents a park
