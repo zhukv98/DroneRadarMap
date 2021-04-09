@@ -1,4 +1,4 @@
-package edu.uc.zhukv.droneradarmap.Weather_Layer
+package service
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -11,9 +11,12 @@ import java.io.IOException
 import java.net.MalformedURLException
 import java.net.URL
 
-class TransparentTileOWM(private val tileType: String):TileProvider {
+class TransparentTileOWM(private val tileType: String) : TileProvider {
     private val opacityPaint = Paint()
 
+    init {
+        setOpacity(50)
+    }
     /**
      * This constructor assumes the `url` parameter contains three placeholders for the x- and y-positions of
      * the tile as well as the zoom level of the tile. The placeholders are assumed to be `{x}`,
@@ -24,11 +27,12 @@ class TransparentTileOWM(private val tileType: String):TileProvider {
     init {
         setOpacity(50)
     }
+
     /**
      * Sets the desired opacity of map [Tile]s, as a percentage where 0% is invisible and 100% is completely opaque.
      * @param opacity The desired opacity of map [Tile]s (as a percentage between 0 and 100, inclusive)
      */
-    fun setOpacity(opacity: Int) {
+    internal fun setOpacity(opacity: Int) {
         val alpha = Math.round(opacity * 2.55).toInt() // 2.55 = 255 * 0.01
         opacityPaint.alpha = alpha
     }
@@ -98,7 +102,15 @@ class TransparentTileOWM(private val tileType: String):TileProvider {
     }
 
     companion object {
-        private const val OWM_TILE_URL = "http://tile.openweathermap.org/map/%s/%d/%d/%d.png?appid=d6d46d84c231bd013c9f0088629b0eb8"
+
+    /**
+     * This constructor assumes the `url` parameter contains three placeholders for the x- and y-positions of
+     * the tile as well as the zoom level of the tile. The placeholders are assumed to be `{x}`,
+     * `{y}`, and `{zoom}`. An example
+     * for an OpenWeatherMap URL would be: http://tile.openweathermap.org/map/precipitation/{zoom}/{x}/{y}.png
+     *
+     */        private const val OWM_TILE_URL =
+            "http://tile.openweathermap.org/map/%s/%d/%d/%d.png?appid=d6d46d84c231bd013c9f0088629b0eb8"
     }
 
 }

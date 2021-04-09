@@ -1,4 +1,4 @@
-package edu.uc.zhukv.droneradarmap
+package ui.maps
 
 import android.Manifest
 import android.content.Context
@@ -7,7 +7,6 @@ import android.location.LocationManager
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
 class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
@@ -38,15 +37,15 @@ class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
          * device. The result of the permission request is handled by a callback,
          * onRequestPermissionsResult.
          */
-            if (ContextCompat.checkSelfPermission(this.applicationContext,
-                            Manifest.permission.ACCESS_FINE_LOCATION)
-                    == PackageManager.PERMISSION_GRANTED) {
-                var locationPermissionGranted = true
-            } else {
-                val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0
-                //ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                        //PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION)
-            }
+        if (ContextCompat.checkSelfPermission(this.applicationContext,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+            == PackageManager.PERMISSION_GRANTED) {
+            var locationPermissionGranted = true
+        } else {
+            val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0
+            //ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+            //PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION)
+        }
 
 
     internal fun onRequestPermissionsResult(requestCode: Int,
@@ -59,7 +58,7 @@ class MapsActivityCurrentPlace(var NameOfCity: TextView? = null) {
 
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.isNotEmpty() &&
-                        grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     locationPermissionGranted = true
                 }
             }

@@ -20,7 +20,7 @@ Searching for the best place to play with your drones without any trouble? Drone
 - Locate restrictions zones
 - Monitor the weather at your current position
 
-Use your Android Device to search any parks and attractions near your position where you can play with drones. For example, Summit Park is one of the best places to play with them because of its massive open area. Receive warnings on being under a restriction zone and show the its level. Noftify you when rain, ice/snow, or high winds are moving to your current position.
+Use your Android Device to search any parks and attractions near your position where you can play with drones. For example, Summit Park is one of the best places to play with them because of its massive open area. Receive warnings on being under a restriction zone and show the its level. Notify you when rain, ice/snow, or high winds are moving to your current position.
 ## Storyboard
 ![image](https://user-images.githubusercontent.com/47064092/110392833-936ec980-8037-11eb-8e46-21a8ea95ab49.png)
 ![image](https://user-images.githubusercontent.com/47064092/110392994-d7fa6500-8037-11eb-8340-89f9161486ec.png)
@@ -76,7 +76,7 @@ Current Weather: Overcast
 ## Class Diagram
  ![DroneUML](https://user-images.githubusercontent.com/55035232/106397933-f8525680-63dd-11eb-88f1-f94e0094307a.png)
 ## Class Diagram Description
-- MainActivity: A map with the weather radar to show the current positions of rain, ice/snow, or winds depending on the setting
+- ui.main.MainActivity: A map with the weather radar to show the current positions of rain, ice/snow, or winds depending on the setting
 - MainViewModel: A screen that shows the main overview of the map
 - MapView: A screen that shows the overview of the map
 - Park: Noun class that represents a park

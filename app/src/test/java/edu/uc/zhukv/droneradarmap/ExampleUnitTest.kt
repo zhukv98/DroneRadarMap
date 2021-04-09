@@ -1,8 +1,8 @@
 package edu.uc.zhukv.droneradarmap
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import edu.uc.zhukv.droneradarmap.dto.Airport
-import edu.uc.zhukv.droneradarmap.ui.main.MainViewModel
+import dto.Airport
+import ui.main.MainViewModel
 
 import org.junit.Test
 
