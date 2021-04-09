@@ -1,4 +1,4 @@
-package edu.uc.zhukv.droneradarmap
+package ui.details
 
 import androidx.lifecycle.ViewModel
 

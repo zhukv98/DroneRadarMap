@@ -1,4 +1,4 @@
-package edu.uc.zhukv.droneradarmap.Weather_Layer
+package service
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -10,7 +10,6 @@ import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.net.MalformedURLException
 import java.net.URL
-import kotlin.math.roundToInt
 
 class TransparentTileOWM(private val tileType: String) : TileProvider {
     private val opacityPaint = Paint()

@@ -1,8 +1,8 @@
-package edu.uc.zhukv.droneradarmap
+package service
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-object RetrofitClientInstance {
+object RetrofitClientInstanceMaps {
     private var retrofit:Retrofit? = null
     private val BASE_URL = "https://raw.githubusercontent.com"
 

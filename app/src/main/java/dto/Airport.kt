@@ -1,4 +1,4 @@
-package edu.uc.zhukv.droneradarmap.dto
+package dto
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,9 +1,9 @@
-package edu.uc.zhukv.droneradarmap.ui.main
+package ui.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import edu.uc.zhukv.droneradarmap.dto.Airport
-import edu.uc.zhukv.droneradarmap.service.AirportService
+import dto.Airport
+import service.AirportService
 
 class MainViewModel : ViewModel(){
 

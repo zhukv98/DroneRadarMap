@@ -1,20 +1,5 @@
 package service
 
-import android.app.Application
-import android.content.ContentValues.TAG
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import androidx.room.Room
-import dao.IRetrofitWeatherDAO
-import com.google.android.gms.tasks.Tasks.await
-import dao.IWeatherDAO
-import dto.Forecast
-import edu.uc.zhukv.droneradarmap.MapsActivityCurrentPlace
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.lang.Exception
-
 //you'll need to make a method (let's call it fetchForecast) that actually initiates the retrieval of the forecast based on an inputted geocode.
 // This is also where you'd call Kevin's gps function to get the user's current geocode.
 // Feed the geocode as a parameter to the getForecast method in IWeatherDAO.

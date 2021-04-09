@@ -1,6 +1,6 @@
-package main
+package service
 
-class CurrentWeatherConditions() {
+class FlagSystemService() {
 
     val red_flag = 0
     val yellow_flag = 1
