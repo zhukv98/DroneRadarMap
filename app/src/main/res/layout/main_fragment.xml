@@ -5,14 +5,16 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#004d00"
     tools:context=".ui.main.MainFragment">
 
     <AutoCompleteTextView
         android:id="@+id/actAirport"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Enter an Airport"
-        android:text="AutoCompleteTextView"
+        android:textColor="@android:color/white"
+        android:hint="@string/enter_an_airport"
+        android:text="@string/autocompletetextview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

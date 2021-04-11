@@ -15,4 +15,6 @@
     <string name="red_flag">Red Flag</string>
     <string name="yellow_flag">Yellow Flag</string>
     <string name="green_flag">Green Flag</string>
+    <string name="enter_an_airport">Enter an Airport</string>
+    <string name="autocompletetextview">AutoCompleteTextView</string>
 </resources>
