@@ -1,8 +1,16 @@
 <resources>
-    <string name="app_name">DroneRadarMap</string>
+    <string name="app_name">Go-4-Drone</string>
     <string name="title_activity_maps">Map</string>
     <string name="normal_map">Normal</string>
     <string name="hybrid_map">Hybrid</string>
     <string name="satellite_map">Satellite</string>
     <string name="terrain_map">Terrain</string>
+    <string name="change_location">Change Location</string>
+    <string name="see_radar">See Radar</string>
+    <string name="home">Home</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="notification_center">Notification Center</string>
+    <string name="recent">Recent</string>
+    <string name="weather_flag_system">Weather Flag System</string>
+    <string name="red_flag">Red Flag</string>
 </resources>
