@@ -16,5 +16,9 @@
     <string name="yellow_flag">Yellow Flag</string>
     <string name="green_flag">Green Flag</string>
     <string name="enter_an_airport">Enter an Airport</string>
-    <string name="autocompletetextview">AutoCompleteTextView</string>
+    <string name="auto_complete_text_view">AutoCompleteTextView</string>
+    <string name="current_wind_speed">Current Wind Speed:</string>
+    <string name="temperature">Temperature:</string>
+    <string name="cloud_coverage">Cloud Coverage</string>
+    <string name="chance_of_precipitation">Chance of Precipitation:</string>
 </resources>
