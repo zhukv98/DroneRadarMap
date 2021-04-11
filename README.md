@@ -8,10 +8,6 @@ Kevin Zhu
 
 Storm Hamilton
 
-Edward Greenlee 
-
-Lily Powell
-
 Jeanette Kootin-Sanwu
 
 ## Introduction
