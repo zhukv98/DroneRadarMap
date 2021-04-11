@@ -4,55 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#004d00"
     tools:context=".ui.home.HomeFragment">
 
     <TextView
         android:id="@+id/lblTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Go-4-Drone"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="40sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo"
+        tools:ignore="UnknownId" />
 
     <ImageView
-        android:id="@+id/imgLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_width="237dp"
+        android:layout_height="235dp"
+        android:layout_marginTop="116dp"
+        android:contentDescription="@+id/imgLogo"
+        android:src="@drawable/droneradar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnSeeRadar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="See Radar"
+        android:text="@string/see_radar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imbCurrentFlag" />
+        tools:layout_editor_absoluteY="419dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btnChangeLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="Change Location"
+        android:text="@string/change_location"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSeeRadar" />
 
-    <ImageButton
-        android:id="@+id/imbCurrentFlag"
-        android:layout_width="72dp"
-        android:layout_height="81dp"
-        android:layout_marginTop="64dp"
-        android:src="@drawable/ic_launcher_foreground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblTitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>
