@@ -13,4 +13,6 @@
     <string name="recent">Recent</string>
     <string name="weather_flag_system">Weather Flag System</string>
     <string name="red_flag">Red Flag</string>
+    <string name="yellow_flag">Yellow Flag</string>
+    <string name="green_flag">Green Flag</string>
 </resources>
