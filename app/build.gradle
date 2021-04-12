@@ -1,7 +1,12 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+
+
+
 }
 
 android {
@@ -78,5 +83,8 @@ dependencies {
     testImplementation 'androidx.arch.core:core-testing:2.1.0'
     testImplementation "io.mockk:mockk:1.9"
     implementation "com.squareup.okhttp3:okhttp:4.9.0"
+    implementation platform('com.google.firebase:firebase-bom:27.0.0')
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
 }
