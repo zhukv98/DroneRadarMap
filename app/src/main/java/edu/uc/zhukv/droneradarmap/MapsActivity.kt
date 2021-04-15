@@ -58,7 +58,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             val location = mFusedLocationProviderClient.lastLocation
             location.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    var currentLocation:Location? = task.result
+                    val currentLocation:Location? = task.result
                     if (currentLocation != null) {
                         moveCamera(
                                 LatLng(currentLocation.latitude, currentLocation.longitude),
@@ -75,7 +75,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun getLocationPermission() {
-        var permissions = arrayOf(
+        val permissions = arrayOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION
         )
@@ -185,11 +185,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
     private fun AirportMarkers(){
         mvm.fetchAirports()
-        mvm.airports.observe(this, Observer {
+        mvm.airports.observe(this, Observer { it ->
             it.forEach {
                 //Create MarkerOptions object
                 if (it.Iata != ""){ // Filter out any location that are not airports
-                    var position = LatLng(it.Latitude.toDouble(), it.Longitude.toDouble())
+                    val position = LatLng(it.Latitude.toDouble(), it.Longitude.toDouble())
                     val markerOptions = MarkerOptions()
                     markerOptions.position(position)
                     markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.airport))
@@ -200,7 +200,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         })
     }
     private fun addCircle(latLng: LatLng, radius: Float){
-        var circleOptions = CircleOptions()
+        val circleOptions = CircleOptions()
         circleOptions.center(latLng)
         circleOptions.radius(radius.toDouble())
         circleOptions.strokeColor(Color.argb(255,255,0,0))
