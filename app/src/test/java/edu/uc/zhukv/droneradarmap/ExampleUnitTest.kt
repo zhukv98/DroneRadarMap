@@ -24,11 +24,25 @@ class ExampleUnitTest {
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
+    @Test
+    fun airportDTO_maintainsState() {
+        var airport = Airport("Cincinnati Northern Kentucky Intl", "Cincinnati", "United States", "CVG", "39.048836", "-84.667822")
+        assertTrue(airport.name.equals("Cincinnati Northern Kentucky Intl"))
+        assertTrue(airport.City.equals("Cincinnati"))
+        assertTrue(airport.Country.equals("United States"))
+        assertTrue(airport.Iata.equals("CVG"))
+        assertTrue(airport.Latitude.equals("39.048836"))
+        assertTrue(airport.Longitude.equals("-84.667822"))
+    }
 
+    @Test
+    fun airportDTO_toStringFormat() {
+        var airport = Airport("Cincinnati Northern Kentucky Intl", "Cincinnati", "United States", "CVG", "39.048836", "-84.667822")
+        assertTrue(airport.toString().equals("Airport: Cincinnati Northern Kentucky Intl City: Cincinnati Country: United States IATA: CVG  Lat: 39.048836  Lng: -84.667822"))
+    }
     @Before
     fun populateAirports() {
         mvm = MainViewModel()
-
     }
     @Test
     fun airportDTO_isPopulated() {
