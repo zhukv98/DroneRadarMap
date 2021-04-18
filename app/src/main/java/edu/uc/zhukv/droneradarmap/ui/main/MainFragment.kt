@@ -2,17 +2,15 @@ package edu.uc.zhukv.droneradarmap.ui.main
 
 import android.Manifest
 import android.content.pm.PackageManager
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
+import androidx.lifecycle.*
 import com.google.android.gms.location.FusedLocationProviderClient
 import edu.uc.zhukv.droneradarmap.R
-import edu.uc.zhukv.droneradarmap.dto.ForecastAndData.Forecast
 import edu.uc.zhukv.droneradarmap.service.FlagSystemService
 import edu.uc.zhukv.droneradarmap.ui.mapsAndLocation.LocationViewModel
 
@@ -27,9 +25,12 @@ class MainFragment : Fragment() {
     private lateinit var locationViewModel: LocationViewModel
     private lateinit var currentLat: String
     private lateinit var currentLon: String
+
+
+
+
     private var currentFlag: Int = 0
     private var flagService: FlagSystemService = FlagSystemService()
-    private lateinit var currentForecast: Forecast;
 
     companion object {
         fun newInstance() = MainFragment()
@@ -45,7 +46,15 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        locationViewModel = ViewModelProvider(this).get(LocationViewModel::class.java)
+
+        activity.let{
+            viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        }
+
+        locationViewModel.forecastService.fetchForecast(currentLat,currentLon).observe(this, Observer {
+            forecast -> flagService.calculateCurrentFlag(forecast)
+        })
 
     }
 
@@ -67,5 +76,7 @@ class MainFragment : Fragment() {
         })
 
     }
+
+
 
 }

@@ -1,6 +1,6 @@
 package edu.uc.zhukv.droneradarmap.dao
 
-import edu.uc.zhukv.droneradarmap.dto.ForecastAndData.Forecast
+import edu.uc.zhukv.droneradarmap.dto.ForecastAndData.ForecastBuffer
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.QueryMap
@@ -9,7 +9,7 @@ import retrofit2.http.QueryMap
 interface IWeatherDAO {
 
     @GET("data/2.5/forecast/hourly")
-    fun getForecastByGeoCode(@QueryMap() filter: Map<String,String>) : Call<ArrayList<Forecast>>
+    fun getForecastByGeoCode(@QueryMap() filter: Map<String,String>) : Call<ForecastBuffer>
 
 
 

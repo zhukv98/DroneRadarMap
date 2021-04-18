@@ -1,15 +1,16 @@
 package edu.uc.zhukv.droneradarmap.service
 
-class FlagSystemService() {
+import edu.uc.zhukv.droneradarmap.dto.ForecastAndData.RawForecast
+
+class FlagSystemService(rawForecast: RawForecast) {
 
     var currentHazardRating = 0;
 
-    val GREEN_FLAG = 0
-    val YELLOW_FLAG = 1
-    val RED_FLAG = 2;
-    var temperature = 75
-    var windSpeed = 10
-    var precipitation = 0
+    private val GREEN_FLAG = 0
+    private val YELLOW_FLAG = 1
+    private val RED_FLAG = 2;
+
+
 
     fun calculateCurrentFlag(): Int {
         var currentFlag = 0;
