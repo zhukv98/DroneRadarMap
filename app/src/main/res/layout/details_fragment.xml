@@ -33,18 +33,6 @@
         app:layout_constraintTop_toBottomOf="@+id/txtWindSpeed" />
 
     <TextView
-        android:id="@+id/txtWeatherVariable2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="32dp"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:text="@string/cloud_coverage"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtWeatherVariable1" />
-
-    <TextView
         android:id="@+id/txtPrecipitation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -102,17 +90,5 @@
         android:text="70"
         app:layout_constraintStart_toEndOf="@+id/txtWeatherVariable1"
         app:layout_constraintTop_toBottomOf="@+id/txtWindSpeedResult" />
-
-    <TextView
-        android:id="@+id/txtWeatherVariable2Result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="32dp"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:text="insert condition here"
-        app:layout_constraintStart_toEndOf="@+id/txtWeatherVariable2"
-        app:layout_constraintTop_toBottomOf="@+id/txtWeatherVariable1Result" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
