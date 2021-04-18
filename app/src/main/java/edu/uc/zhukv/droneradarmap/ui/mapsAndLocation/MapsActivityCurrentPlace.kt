@@ -1,4 +1,4 @@
-package edu.uc.zhukv.droneradarmap.ui.maps
+package edu.uc.zhukv.droneradarmap.ui.mapsAndLocation
 
 import android.Manifest
 import android.content.Context
