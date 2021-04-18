@@ -7,7 +7,7 @@ object RetrofitClientInstance {
 
     private var retrofit: Retrofit? = null;
 
-    private val BASE_URL = "https://weather.com/swagger-docs/ui/sun/v1/sunV1HourlyForecast.json";
+    private val BASE_URL = "pro.openweathermap.org/";
 
 
     val retrofitInstance : Retrofit?
