@@ -8,5 +8,15 @@
     android:background="#004d00"
     tools:context=".ui.main.MainFragment">
 
+    <AutoCompleteTextView
+        android:id="@+id/actAirport"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/autocompletetextview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="LabelFor" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

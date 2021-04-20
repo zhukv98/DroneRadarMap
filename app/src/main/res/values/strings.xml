@@ -22,6 +22,7 @@
     <string name="cloud_coverage">Cloud Coverage</string>
     <string name="chance_of_precipitation">Chance of Precipitation:</string>
     <string name="enter_address_city_or_zip_code">Enter Address, City or Zip Code</string>
+    <string name="autocompletetextview">actAirport</string>
     <string-array name="map_options">
         <item>Normal</item>
         <item>Hybrid</item>
