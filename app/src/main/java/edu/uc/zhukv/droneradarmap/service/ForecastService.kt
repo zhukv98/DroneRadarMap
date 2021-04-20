@@ -52,9 +52,15 @@ class ForecastService(application: Application) {
      */
     fun refineForecast(rawForecast: RawForecast): RefinedForecast{
         val refinedForecast = RefinedForecast()
-        val refinedTemp = rawForecast.get(temperatureData)
+        refinedForecast.temperature.set(rawForecast.temperatureData.temperature.toBigDecimal().toPlainString())
+        refinedForecast.precipitation.set((rawForecast.chanceOfRain.toBigDecimal()*100).toPlainString() +"%")
+        refinedForecast.generalWeather.set(rawForecast.generalWeather)
+        refinedForecast.cloudCoverage.set(rawForecast.cloudCoverage.getValue("all").toBigDecimal().toPlainString())
+        refinedForecast.windSpeed.set(rawForecast.windData.speed.toBigDecimal().toPlainString())
 
 
         return refinedForecast()
     }
+
 }
+

@@ -17,7 +17,7 @@ class LocationViewModel(application: Application) : AndroidViewModel(application
 
     fun fetchForecast(){
         viewModelScope.launch {
-            _forecastService.fetchForecast(locationLiveData.ge)
+            _forecastService.fetchForecast(locationLiveData.get)
         }
     }
 

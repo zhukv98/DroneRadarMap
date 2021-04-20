@@ -53,7 +53,7 @@ class MainFragment : Fragment() {
         }
 
         locationViewModel.forecastService.fetchForecast(currentLat,currentLon).observe(this, Observer {
-            forecast -> flagService.calculateCurrentFlag(forecast)
+            Forecast -> flagService.calculateCurrentFlag(forecast)
         })
 
     }
