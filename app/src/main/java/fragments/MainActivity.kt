@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView.setupWithNavController(navController)
 
-        //Here Down is stuff needed for Storm's functionality
+        //From here on down I'm not entirely sure what this. It was in the other MainActivity class and it looks relevant to the weather Tile system so I'm keeping it for the moment since that system doesn't seem to be breaking.
 
         val APP_ID = "c2b2b2a424915a775cacac7d33a2217a"
         val WEATHER_URL = "https://home.openweathermap.org/data/2.5/weather"

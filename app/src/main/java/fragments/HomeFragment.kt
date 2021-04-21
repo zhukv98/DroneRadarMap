@@ -3,9 +3,9 @@ package fragments
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import edu.uc.zhukv.droneradarmap.MapsActivity
+
 import edu.uc.zhukv.droneradarmap.R
-import edu.uc.zhukv.droneradarmap.Weather_Layer.TransparentTileOWM
+import edu.uc.zhukv.droneradarmap.service.TransparentTileOWM
 import kotlinx.android.synthetic.main.fragment_home.*
 import main.CurrentWeatherConditions
 
