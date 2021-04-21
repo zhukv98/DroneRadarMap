@@ -5,9 +5,11 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.ArrayAdapter
 import androidx.annotation.NonNull
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -211,4 +213,23 @@ class MapsActivity : AppCompatActivity() {
             }
         }
     }
+    /*
+    Keeping Jeanette's implementation just in case
+    //map options menu from the menu folder
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.map_options)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.normal_map -> Toast.makeText(this,"Normal Map", Toast.LENGTH_SHORT).show()
+            R.id.hybrid_map -> Toast.makeText(this, "Hybrid Map", Toast.LENGTH_SHORT).show()
+            R.id.satellite_map -> Toast.makeText(this, "Satellite Map", Toast.LENGTH_SHORT).show()
+            R.id.terrain_map-> Toast.makeText(this, "Terrain Map", Toast.LENGTH_SHORT).show()
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
+    */
 }

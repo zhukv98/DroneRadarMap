@@ -2,6 +2,10 @@ package fragments
 
 import android.location.LocationManager
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.Toast
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -26,19 +30,27 @@ class MainActivity : AppCompatActivity() {
         actionBar.setDisplayHomeAsUpEnabled(true)
 
         //enables navigation bar
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.mobile_navigation)
-        val navController = findNavController(R.id.mobile_navigation)
+        //val bottomNavigationView = findViewById<BottomNavigationView>(R.id.homepage)
+        //val navController = findNavController(R.id.bottom_nav)
 
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home,
-                R.id.navigation_notifications
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        //val appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_home, R.id.navigation_notifications))
+        //setupActionBarWithNavController(navController, appBarConfiguration)
 
-        bottomNavigationView.setupWithNavController(navController)
+        //bottomNavigationView.setupWithNavController(navController)
 
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.bottom_nav_menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.navigation_home -> Toast.makeText(this,"Home", Toast.LENGTH_SHORT).show()
+            R.id.navigation_notifications -> Toast.makeText(this, "Navigation Center", Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
         //From here on down I'm not entirely sure what this. It was in the other MainActivity class and it looks relevant to the weather Tile system so I'm keeping it for the moment since that system doesn't seem to be breaking.
 
         val APP_ID = "c2b2b2a424915a775cacac7d33a2217a"
@@ -63,5 +75,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+}
+
+fun MenuInflater.inflate(bottomNavMenu: Int) {
 
 }
