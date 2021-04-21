@@ -1,17 +1,12 @@
 package fragments
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import edu.uc.zhukv.droneradarmap.R
-import kotlinx.android.synthetic.main.fragment_home.*
-import main.CurrentWeatherConditions
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,15 +20,32 @@ class MainActivity : AppCompatActivity() {
         actionBar.setDisplayHomeAsUpEnabled(true)
 
         //enables navigation bar
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.mobile_navigation)
-        val navController = findNavController(R.id.mobile_navigation)
+        //val bottomNavigationView = findViewById<BottomNavigationView>(R.id.homepage)
+        //val navController = findNavController(R.id.bottom_nav)
 
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_home, R.id.navigation_notifications))
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        //val appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_home, R.id.navigation_notifications))
+        //setupActionBarWithNavController(navController, appBarConfiguration)
 
-        bottomNavigationView.setupWithNavController(navController)
+        //bottomNavigationView.setupWithNavController(navController)
 
     }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.bottom_nav_menu)
+        return true
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.navigation_home -> Toast.makeText(this,"Home", Toast.LENGTH_SHORT).show()
+            R.id.navigation_notifications -> Toast.makeText(this, "Navigation Center", Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
+}
+
+fun MenuInflater.inflate(bottomNavMenu: Int) {
 
 }
