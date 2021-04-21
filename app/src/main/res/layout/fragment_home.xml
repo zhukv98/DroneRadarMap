@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#004d00"
     app:menu="@menu/bottom_nav_menu"
-    tools:context=".ui.home.HomeFragment">
+    tools:context="fragments.HomeFragment">
 
     <TextView
         android:id="@+id/lblTitle"
