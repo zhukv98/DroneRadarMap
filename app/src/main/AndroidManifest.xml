@@ -52,7 +52,7 @@
 
 
         <activity
-            android:name="edu.uc.zhukv.droneradarmap.ui.maps.MapsActivity"
+            android:name="fragments.MainActivity"
 
             android:label="Drone Radar Map">
             <intent-filter>
