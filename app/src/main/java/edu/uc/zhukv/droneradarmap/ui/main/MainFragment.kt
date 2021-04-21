@@ -11,7 +11,9 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.*
 import com.google.android.gms.location.FusedLocationProviderClient
 import edu.uc.zhukv.droneradarmap.R
+import edu.uc.zhukv.droneradarmap.dto.ForecastAndData.RefinedForecast
 import edu.uc.zhukv.droneradarmap.service.FlagSystemService
+import edu.uc.zhukv.droneradarmap.service.ForecastService
 import edu.uc.zhukv.droneradarmap.ui.mapsAndLocation.LocationViewModel
 
 class MainFragment : Fragment() {
@@ -25,12 +27,14 @@ class MainFragment : Fragment() {
     private lateinit var locationViewModel: LocationViewModel
     private lateinit var currentLat: String
     private lateinit var currentLon: String
+    private lateinit var refinedForecast: RefinedForecast
 
 
 
 
     private var currentFlag: Int = 0
-    private var flagService: FlagSystemService = FlagSystemService()
+
+    private lateinit var flagService: FlagSystemService
 
     companion object {
         fun newInstance() = MainFragment()
@@ -52,8 +56,10 @@ class MainFragment : Fragment() {
             viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         }
 
-        locationViewModel.forecastService.fetchForecast(currentLat,currentLon).observe(this, Observer {
-            Forecast -> flagService.calculateCurrentFlag(forecast)
+        locationViewModel.forecastService.fetchForecast(currentLat,currentLon).observe( viewLifecycleOwner, Observer {
+            refinedForecast =  locationViewModel.forecastService.refineForecast(it)
+            flagService = FlagSystemService(refinedForecast)
+            //This is where you'd make calls to pass refinedForecast and flagService to elements of the Details Page
         })
 
     }
@@ -69,7 +75,6 @@ class MainFragment : Fragment() {
 
 
     private fun requestLocationUpdates() {
-        locationViewModel = ViewModelProviders.of(this).get(LocationViewModel::class.java)
         locationViewModel.getLocationLiveData().observe(this, Observer {
             currentLat = it.latitude
             currentLon = it.longitude

@@ -53,6 +53,7 @@ import edu.uc.zhukv.droneradarmap.dto.LocationDetails
             value = LocationDetails(location.longitude.toString(), location.latitude.toString())
         }
 
+
         companion object {
             val ONE_MINUTE : Long = 60000
             val locationRequest : LocationRequest = LocationRequest.create().apply {

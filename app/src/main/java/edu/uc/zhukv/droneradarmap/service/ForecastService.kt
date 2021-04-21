@@ -4,37 +4,36 @@ package edu.uc.zhukv.droneradarmap.service
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import edu.uc.zhukv.droneradarmap.dao.IWeatherDAO
-import edu.uc.zhukv.droneradarmap.dto.ForecastAndData.ForecastBuffer
 import edu.uc.zhukv.droneradarmap.dto.ForecastAndData.RawForecast
 import edu.uc.zhukv.droneradarmap.dto.ForecastAndData.RefinedForecast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.sql.Ref
 
 
 class ForecastService(application: Application) {
    private val application = application
 
-    fun fetchForecast(latitude: String, longitude: String): MutableLiveData<ForecastBuffer>{
-        var fullForecast = MutableLiveData<ForecastBuffer>()
-        val service = RetrofitClientInstance.retrofitInstance?.create(IWeatherDAO::class.java);
+
+    internal fun  fetchForecast(latitude: String, longitude: String): MutableLiveData<RawForecast>{
+        var fullForecast = MutableLiveData<RawForecast>()
+        val weatherDAO = RetrofitClientInstance.retrofitInstance?.create(IWeatherDAO::class.java);
         val filter: Map<String,String> = mapOf<String,String>(
                 "lat" to latitude,
                 "lon" to longitude,
                 "appid" to "df9069ccbd30ae379cf12b83f551c233",
                 "units" to "imperial"
         )
-        val call = service?.getForecastByGeoCode(filter);
-        call?.enqueue(object: Callback<ForecastBuffer>{
+        val call = weatherDAO?.getForecastByGeoCode(filter);
+        call?.enqueue(object: Callback<RawForecast>{
 
-            override fun onFailure(call: Call<ForecastBuffer>, t: Throwable) {
+            override fun onFailure(call: Call<RawForecast>, t: Throwable) {
                 val j = 1 + 1
             }
 
             override fun onResponse(
-                    call: Call<ForecastBuffer>,
-                    response: Response<ForecastBuffer>
+                    call: Call<RawForecast>,
+                    response: Response<RawForecast>
                 ){
                 fullForecast.value = response.body();
                 }
@@ -42,6 +41,8 @@ class ForecastService(application: Application) {
         })
         return fullForecast;
     }
+
+
 
     /**
      * Refines (aka parses) the raw forecast data into a refinedForecast, which is essentially
@@ -52,14 +53,13 @@ class ForecastService(application: Application) {
      */
     fun refineForecast(rawForecast: RawForecast): RefinedForecast{
         val refinedForecast = RefinedForecast()
-        refinedForecast.temperature.set(rawForecast.temperatureData.temperature.toBigDecimal().toPlainString())
-        refinedForecast.precipitation.set((rawForecast.chanceOfRain.toBigDecimal()*100).toPlainString() +"%")
-        refinedForecast.generalWeather.set(rawForecast.generalWeather)
-        refinedForecast.cloudCoverage.set(rawForecast.cloudCoverage.getValue("all").toBigDecimal().toPlainString())
-        refinedForecast.windSpeed.set(rawForecast.windData.speed.toBigDecimal().toPlainString())
+        refinedForecast.temperature = rawForecast.temperatureData.temperature.toBigDecimal().toPlainString()
+        refinedForecast.generalWeather = rawForecast.generalWeather.toString()
+        refinedForecast.cloudCoverage = rawForecast.cloudCoverage.getValue("all").toBigDecimal().toPlainString()
+        refinedForecast.windSpeed = rawForecast.windData.speed.toBigDecimal().toPlainString()
 
 
-        return refinedForecast()
+        return refinedForecast
     }
 
 }

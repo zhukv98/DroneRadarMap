@@ -29,14 +29,14 @@ class MainActivity : AppCompatActivity() {
         actionBar!!.title = "Go-4-Drone"
         actionBar.setDisplayHomeAsUpEnabled(true)
 
-        //enables navigation bar
-        //val bottomNavigationView = findViewById<BottomNavigationView>(R.id.homepage)
-        //val navController = findNavController(R.id.bottom_nav)
+        // enables navigation bar
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.homepage)
+        val navController = findNavController(R.id.bottom_nav)
 
-        //val appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_home, R.id.navigation_notifications))
-        //setupActionBarWithNavController(navController, appBarConfiguration)
+        val appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_home, R.id.navigation_notifications))
+        setupActionBarWithNavController(navController, appBarConfiguration)
 
-        //bottomNavigationView.setupWithNavController(navController)
+        bottomNavigationView.setupWithNavController(navController)
 
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
