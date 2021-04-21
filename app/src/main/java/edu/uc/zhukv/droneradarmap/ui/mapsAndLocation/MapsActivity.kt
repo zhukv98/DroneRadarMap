@@ -1,4 +1,4 @@
-package edu.uc.zhukv.droneradarmap.ui.maps
+package edu.uc.zhukv.droneradarmap.ui.mapsAndLocation
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -44,7 +44,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
     }
 
-    private fun getDeviceLocation() {
+    fun getDeviceLocation() {
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         if (mLocationPermissionGranted) {
             if (ActivityCompat.checkSelfPermission(

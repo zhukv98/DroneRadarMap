@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "644742898675",
+    "project_id": "go-4-drone",
+    "storage_bucket": "go-4-drone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644742898675:android:1cd2a45cb7bbf85c4be886",
+        "android_client_info": {
+          "package_name": "edu.uc.zhukv.droneradarmap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644742898675-ca9nd6gfu0vgfsnrtlp6t63m4rp0iekv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALcV760ahfN246J8hQu--Y689nGoRhobE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644742898675-ca9nd6gfu0vgfsnrtlp6t63m4rp0iekv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
