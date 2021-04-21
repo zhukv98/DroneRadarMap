@@ -50,13 +50,14 @@
             android:name="com.dji.sdk.API_KEY"
             android:value="d9d76133929c851925e29e87" />
 
-
         <activity
             android:name="fragments.MainActivity"
-
-            // From Retrofix
+           <!-- From Beach_Flag_System
+            android:name=".MapsActivity"
+            -->
+            <!-- From Retrofix
             android:name="edu.uc.zhukv.droneradarmap.ui.mapsAndLocation.MapsActivity"
-
+            -->
             android:label="Drone Radar Map">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
