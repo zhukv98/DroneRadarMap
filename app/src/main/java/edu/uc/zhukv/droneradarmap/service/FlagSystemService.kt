@@ -1,14 +1,19 @@
 package edu.uc.zhukv.droneradarmap.service
 
 import edu.uc.zhukv.droneradarmap.dto.ForecastAndData.RawForecast
+import edu.uc.zhukv.droneradarmap.dto.ForecastAndData.RefinedForecast
 
-class FlagSystemService(rawForecast: RawForecast) {
+class FlagSystemService(refinedForecast: RefinedForecast) {
 
     var currentHazardRating = 0;
 
     private val GREEN_FLAG = 0
     private val YELLOW_FLAG = 1
     private val RED_FLAG = 2;
+
+    private val temperature: Int = refinedForecast.temperature.toInt()
+    private val windSpeed: Int = refinedForecast.windSpeed.toInt()
+    private val cloudCoverage: Int = refinedForecast.cloudCoverage.toInt()
 
 
 
@@ -52,7 +57,7 @@ class FlagSystemService(rawForecast: RawForecast) {
     //Adds to the hazard rating depending on which range of numbers the current chance of precipitation falls into
     //Basically a large piecewise function.
     private fun calculatePrecipitationHazard() {
-        when(precipitation){
+        when(cloudCoverage){
             in 10..30 -> currentHazardRating += 1
             in 31..60 -> currentHazardRating += 2
             in 61..101 -> currentHazardRating += 3
