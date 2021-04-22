@@ -26,16 +26,12 @@ class MainFragment : Fragment() {
     private lateinit var currentLat: String
     private lateinit var currentLon: String
 
-
-
-
     private var currentFlag: Int = 0
     private var flagService: FlagSystemService = FlagSystemService()
 
     companion object {
         fun newInstance() = MainFragment()
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,8 +48,9 @@ class MainFragment : Fragment() {
             viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         }
 
-        locationViewModel.forecastService.fetchForecast(currentLat,currentLon).observe(this, Observer {
-            Forecast -> flagService.calculateCurrentFlag(forecast)
+        locationViewModel.forecastService.fetchForecast(currentLat,currentLon).observe(viewLifecycleOwner, Observer {
+            var refinedForecast = locationViewModel.forecastService.refineForecast(it)
+            flagService = FlagSystemService(refinedForecast)
         })
 
     }

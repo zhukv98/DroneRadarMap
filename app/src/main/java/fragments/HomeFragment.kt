@@ -2,14 +2,15 @@ package fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-
 import edu.uc.zhukv.droneradarmap.R
 import edu.uc.zhukv.droneradarmap.service.TransparentTileOWM
 import kotlinx.android.synthetic.main.fragment_home.*
-import main.CurrentWeatherConditions
 
-class HomeFragment : AppCompatActivity() {
+
+open class HomeFragment : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +29,21 @@ class HomeFragment : AppCompatActivity() {
         }
 
         //enables current weather flag system details
-        imgCurrentFlag.setOnClickListener {
-            val intent = Intent(this, CurrentWeatherConditions::class.java)
-            startActivity(intent)
-        }
+        val button = findViewById<View>(R.id.imgCurrentFlag)
+        button.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                val intent = Intent(this, DetailsFragment::class.java)
+                startActivity(intent)
+            }
+
+            private fun Intent(
+                onClickListener: View.OnClickListener,
+                java: Class<DetailsFragment>
+            ): Intent? {
+                TODO("Not yet implemented")
+            }
+        })
+
 
     }
 }
