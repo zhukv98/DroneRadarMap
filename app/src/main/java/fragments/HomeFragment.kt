@@ -42,13 +42,6 @@ open class HomeFragment : AppCompatActivity() {
         fun newInstance() = HomeFragment()
     }
 
-//    override fun onCreateView(
-//            inflater: LayoutInflater, container: ViewGroup?,
-//            savedInstanceState: Bundle?
-//    ): View {
-//        return inflater.inflate(R.layout.fragment_home, container, false)
-//    }
-
 
     private fun prepRequestLocationUpdates() {
         if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
