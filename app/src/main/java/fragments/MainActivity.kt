@@ -1,5 +1,6 @@
 package fragments
 
+import android.content.Intent
 import android.location.LocationManager
 import android.os.Bundle
 import android.view.Menu
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.fragment_home)
 
         //enables back button for maps page
         val actionBar = supportActionBar
@@ -68,6 +69,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 
 
 }

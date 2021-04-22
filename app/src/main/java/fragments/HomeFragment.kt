@@ -86,17 +86,14 @@ open class HomeFragment : AppCompatActivity() {
 
         //enables change location button
         btnChangeLocation.setOnClickListener {
-            val intent = Intent(this, MapsActivity::class.java)
-            startActivity(intent)
+            ;
         }
 
         //enables current weather flag system details
-        val button = findViewById<View>(R.id.imgCurrentFlag)
-        button.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                val intent = Intent(this, DetailsFragment::class.java)
-                startActivity(intent)
-            }
+
+
+    }
+
 
             private fun Intent(
                 onClickListener: View.OnClickListener,

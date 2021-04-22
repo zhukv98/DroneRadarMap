@@ -8,15 +8,34 @@
         android:id="@+id/homepage"
         android:name="fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
-    <fragment
-        android:id="@+id/notificationsFragment"
-        android:name="edu.uc.zhukv.droneradarmap.ui.notifications.NotificationsFragment"
-        android:label="fragment_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homepage_to_mapsActivity"
+            app:destination="@id/mapsActivity" />
+        <action
+            android:id="@+id/action_homepage_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
     <activity
         android:id="@+id/detailsFragment"
         android:name="fragments.DetailsFragment"
         android:label="details_fragment"
         tools:layout="@layout/details_fragment" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="fragments.MainActivity"
+        android:label="MainActivity" >
+        <action
+            android:id="@+id/action_mainActivity_to_homepage"
+            app:destination="@id/homepage" />
+    </activity>
+    <activity
+        android:id="@+id/mapsActivity"
+        android:name="fragments.MapsActivity"
+        android:label="MapsActivity" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="edu.uc.zhukv.droneradarmap.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>
