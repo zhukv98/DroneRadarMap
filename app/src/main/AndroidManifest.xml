@@ -52,12 +52,6 @@
 
         <activity
             android:name="fragments.MainActivity"
-           <!-- From Beach_Flag_System
-            android:name=".MapsActivity"
-            -->
-            <!-- From Retrofix
-            android:name="edu.uc.zhukv.droneradarmap.ui.mapsAndLocation.MapsActivity"
-            -->
             android:label="Drone Radar Map">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
