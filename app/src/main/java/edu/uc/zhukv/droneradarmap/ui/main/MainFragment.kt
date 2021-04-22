@@ -27,8 +27,7 @@ class MainFragment : Fragment() {
     private lateinit var currentLon: String
 
     private var currentFlag: Int = 0
-    private var flagService: FlagSystemService = FlagSystemService()
-
+    private lateinit var flagService: FlagSystemService
     companion object {
         fun newInstance() = MainFragment()
     }
